@@ -6,6 +6,11 @@
     <RootNamespace>kennel_bambino.web</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200401162750_AddPetsDbset.cs" />
+    <Compile Remove="Data\Migrations\20200401162750_AddPetsDbset.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />

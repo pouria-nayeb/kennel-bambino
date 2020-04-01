@@ -10,8 +10,8 @@ using kennel_bambino.web.Data;
 namespace kennel_bambino.web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200331091159_AddIdentityDbSets")]
-    partial class AddIdentityDbSets
+    [Migration("20200401165833_AddPetDbset")]
+    partial class AddPetDbset
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,6 +221,175 @@ namespace kennel_bambino.web.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("kennel_bambino.web.Models.BodyType", b =>
+                {
+                    b.Property<int>("BodyTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(120)")
+                        .HasMaxLength(120);
+
+                    b.HasKey("BodyTypeId");
+
+                    b.ToTable("BodyTypes");
+                });
+
+            modelBuilder.Entity("kennel_bambino.web.Models.EyeColor", b =>
+                {
+                    b.Property<int>("EyeColorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(120)")
+                        .HasMaxLength(120);
+
+                    b.HasKey("EyeColorId");
+
+                    b.ToTable("EyeColors");
+                });
+
+            modelBuilder.Entity("kennel_bambino.web.Models.Group", b =>
+                {
+                    b.Property<int>("GroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(75)")
+                        .HasMaxLength(75);
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(75)")
+                        .HasMaxLength(75);
+
+                    b.HasKey("GroupId");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("kennel_bambino.web.Models.Pattern", b =>
+                {
+                    b.Property<int>("PatternId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(120)")
+                        .HasMaxLength(120);
+
+                    b.HasKey("PatternId");
+
+                    b.ToTable("Patterns");
+                });
+
+            modelBuilder.Entity("kennel_bambino.web.Models.Pet", b =>
+                {
+                    b.Property<int>("PetId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("BodyTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(750)")
+                        .HasMaxLength(750);
+
+                    b.Property<int>("EyeColorId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Information")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PatternId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("ReadyForDelivery")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("SubGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(320)")
+                        .HasMaxLength(320);
+
+                    b.HasKey("PetId");
+
+                    b.HasIndex("BodyTypeId");
+
+                    b.HasIndex("EyeColorId");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("PatternId");
+
+                    b.HasIndex("SubGroupId");
+
+                    b.ToTable("Pets");
+                });
+
+            modelBuilder.Entity("kennel_bambino.web.Models.Photo", b =>
+                {
+                    b.Property<int>("PhotoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhotoName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(75)")
+                        .HasMaxLength(75);
+
+                    b.HasKey("PhotoId");
+
+                    b.HasIndex("PetId");
+
+                    b.ToTable("Photos");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -268,6 +437,53 @@ namespace kennel_bambino.web.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("kennel_bambino.web.Models.Group", b =>
+                {
+                    b.HasOne("kennel_bambino.web.Models.Group", null)
+                        .WithMany("Groups")
+                        .HasForeignKey("ParentId");
+                });
+
+            modelBuilder.Entity("kennel_bambino.web.Models.Pet", b =>
+                {
+                    b.HasOne("kennel_bambino.web.Models.BodyType", "BodyType")
+                        .WithMany("Pets")
+                        .HasForeignKey("BodyTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("kennel_bambino.web.Models.EyeColor", "EyeColor")
+                        .WithMany("Pets")
+                        .HasForeignKey("EyeColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("kennel_bambino.web.Models.Group", "Group")
+                        .WithMany("Pets")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("kennel_bambino.web.Models.Pattern", "Pattern")
+                        .WithMany("Pets")
+                        .HasForeignKey("PatternId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("kennel_bambino.web.Models.Group", "SubGroup")
+                        .WithMany("Species")
+                        .HasForeignKey("SubGroupId");
+                });
+
+            modelBuilder.Entity("kennel_bambino.web.Models.Photo", b =>
+                {
+                    b.HasOne("kennel_bambino.web.Models.Pet", "Pet")
+                        .WithMany("Photos")
+                        .HasForeignKey("PetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
