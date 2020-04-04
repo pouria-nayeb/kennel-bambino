@@ -42,7 +42,7 @@ namespace kennel_bambino.web.Models
         [Display(Name = "Specie")]
         public int? SubGroupId { get; set; }
 
-        [Display(Name = "EyeColor")]
+        [Display(Name = "Eye Color")]
         public int EyeColorId { get; set; }
 
         [Display(Name = "Body Pattern")]

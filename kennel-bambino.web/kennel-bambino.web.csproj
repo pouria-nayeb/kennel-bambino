@@ -20,4 +20,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\carousels\" />
+    <Folder Include="wwwroot\images\thumbnails\" />
+  </ItemGroup>
+
 </Project>
