@@ -22,7 +22,7 @@ namespace kennel_bambino.web.Services
         }
 
         /// <summary>
-        /// Add new EyeColor or subEyeColor to database.
+        /// Add new eyeColor to database.
         /// </summary>
         /// <param name="eyeColor"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Get all EyeColors and subEyeColors.
+        /// Get all eyeColors.
         /// </summary>
         /// <returns></returns>
         #region Get all eyeColors
@@ -75,7 +75,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Get EyeColor by id from database.
+        /// Get eyeColor by id from database.
         /// </summary>
         /// <param name="eyeColorId"></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Update the EyeColor's data from database.
+        /// Update the eyeColor's data from database.
         /// </summary>
         /// <param name="eyeColor"></param>
         /// <returns></returns>

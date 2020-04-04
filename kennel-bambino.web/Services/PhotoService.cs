@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -200,6 +201,21 @@ namespace kennel_bambino.web.Services
             _context.Photos.Remove(photo);
             await _context.SaveChangesAsync();
         }
+        #endregion
+
+        /// <summary>
+        /// Search photos based on alt.
+        /// </summary>
+        /// <param name="alt"></param>
+        /// <returns></returns>
+        #region Search photo
+        public List<Photo> SearchPhoto(string alt) => _context.Photos
+            .Where(p => p.PhotoName.TextTransform().Contains(alt.TextTransform()))
+            .ToList();
+
+        public async Task<List<Photo>> SearchPhotoAsync(string alt) => await _context.Photos
+            .Where(p => p.PhotoName.TextTransform().Contains(alt.TextTransform()))
+            .ToListAsync();
         #endregion
     }
 }

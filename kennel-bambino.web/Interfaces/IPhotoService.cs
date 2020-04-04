@@ -1,6 +1,7 @@
 ﻿using kennel_bambino.web.Models;
 using kennel_bambino.web.ViewModels;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
@@ -30,6 +31,11 @@ namespace kennel_bambino.web.Interfaces
         #region Remove photo
         void RemovePhoto(int photoId);
         Task RemovePhotoAsync(int photoId);
+        #endregion
+
+        #region Search photo
+        List<Photo> SearchPhoto(string alt);
+        Task<List<Photo>> SearchPhotoAsync(string alt);
         #endregion
     }
 }

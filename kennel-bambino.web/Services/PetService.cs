@@ -1,4 +1,5 @@
 ﻿using kennel_bambino.web.Data;
+using kennel_bambino.web.Helpers;
 using kennel_bambino.web.Interfaces;
 using kennel_bambino.web.Models;
 using kennel_bambino.web.ViewModels;
@@ -242,6 +243,65 @@ namespace kennel_bambino.web.Services
             _context.Pets.Remove(pet);
             await _context.SaveChangesAsync();
         }
+        #endregion
+
+        /// <summary>
+        /// Search pets based on title and code.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        #region Search pet
+        public PetPagingViewModel SearchPets(string title, string code, int pageNumber = 1, int pageSize = 30)
+        {
+            IQueryable<Pet> pets = _context.Pets
+                .Where(p => p.Title.TextTransform().Contains(title.TextTransform()) || p.Code.TextTransform().Contains(code.TextTransform()));
+
+            int take = pageSize;
+            int skip = (pageNumber - 1) * take;
+            int contactsCount = pets.Count();
+
+            int pageCount = (int)Math.Ceiling(Decimal.Divide(contactsCount, take));
+
+            return new PetPagingViewModel
+            {
+                Pets = pets.Skip(skip).Take(take)
+                .OrderByDescending(p => p.PetId)
+                .ToList(),
+                PageNumber = pageNumber,
+                PageCount = pageCount
+            };
+        }
+
+        public async Task<PetPagingViewModel> SearchPetsAsync(string title, string code, int pageNumber = 1, int pageSize = 30)
+        {
+            IQueryable<Pet> pets = _context.Pets
+                    .Where(p => p.Title.TextTransform().Contains(title.TextTransform()) || p.Code.TextTransform().Contains(code.TextTransform()));
+
+            int take = pageSize;
+            int skip = (pageNumber - 1) * take;
+            int contactsCount = pets.Count();
+
+            int pageCount = (int)Math.Ceiling(Decimal.Divide(contactsCount, take));
+
+            return new PetPagingViewModel
+            {
+                Pets = await pets.Skip(skip).Take(take)
+                .OrderByDescending(p => p.PetId)
+                .ToListAsync(),
+                PageNumber = pageNumber,
+                PageCount = pageCount
+            };
+        }
+        #endregion
+
+        /// <summary>
+        /// Pets count on database.
+        /// </summary>
+        /// <returns></returns>
+        #region Pets count
+        public int PetsCount() => _context.Pets.Count();
+        public async Task<int> PetsCountAsync() => await _context.Pets.CountAsync();
         #endregion
 
         #region Helpers

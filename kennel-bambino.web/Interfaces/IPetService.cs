@@ -32,5 +32,15 @@ namespace kennel_bambino.web.Interfaces
         void RemovePet(int petId);
         Task RemovePetAsync(int petId);
         #endregion
+
+        #region Search pet
+        PetPagingViewModel SearchPets(string title, string code, int pageNumber, int pageSize);
+        Task<PetPagingViewModel> SearchPetsAsync(string title, string code, int pageNumber, int pageSize);
+        #endregion
+
+        #region Pets count
+        int PetsCount();
+        Task<int> PetsCountAsync();
+        #endregion
     }
 }
