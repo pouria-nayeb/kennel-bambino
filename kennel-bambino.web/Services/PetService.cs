@@ -100,9 +100,9 @@ namespace kennel_bambino.web.Services
 
             int take = pageSize;
             int skip = (pageNumber - 1) * take;
-            int contactsCount = pets.Count();
+            int petsCount = pets.Count();
 
-            int pageCount = (int)Math.Ceiling(Decimal.Divide(contactsCount, take));
+            int pageCount = (int)Math.Ceiling(Decimal.Divide(petsCount, take));
 
             return new PetPagingViewModel
             {
@@ -121,9 +121,9 @@ namespace kennel_bambino.web.Services
 
             int take = pageSize;
             int skip = (pageNumber - 1) * take;
-            int contactsCount = pets.Count();
+            int petsCount = pets.Count();
 
-            int pageCount = (int)Math.Ceiling(Decimal.Divide(contactsCount, take));
+            int pageCount = (int)Math.Ceiling(Decimal.Divide(petsCount, take));
 
             return new PetPagingViewModel
             {
@@ -304,8 +304,8 @@ namespace kennel_bambino.web.Services
         /// </summary>
         /// <returns></returns>
         #region Pets count
-        public int PetsCount() => _context.Pets.Count();
-        public async Task<int> PetsCountAsync() => await _context.Pets.CountAsync();
+        public int PetsCount() => _context.Pets.Where(p => p.IsDelete == false).Count();
+        public async Task<int> PetsCountAsync() => await _context.Pets.Where(p => p.IsDelete == false).CountAsync();
         #endregion
 
         #region Helpers
