@@ -105,7 +105,7 @@ namespace kennel_bambino.web.Services
             {
                 carousel.ImageName = carouselFile.UpdateUploadedCarouselPhoto(carousel);
 
-                _context.Carousels.Remove(carousel);
+                _context.Carousels.Update(carousel);
                 _context.SaveChanges();
 
                 return carousel;
@@ -124,7 +124,7 @@ namespace kennel_bambino.web.Services
             {
                 carousel.ImageName = carouselFile.UpdateUploadedCarouselPhoto(carousel);
 
-                _context.Carousels.Remove(carousel);
+                _context.Carousels.Update(carousel);
                 await _context.SaveChangesAsync();
 
                 return carousel;

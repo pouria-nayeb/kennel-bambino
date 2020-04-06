@@ -78,7 +78,7 @@ namespace kennel_bambino.web.Helpers
                         File.Delete(path);
                     }
 
-                    return imageFile.UploadPhoto();
+                    return imageFile.UploadPhoto("carousels");
                 }
             }
 

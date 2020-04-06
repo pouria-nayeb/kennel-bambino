@@ -22,7 +22,7 @@ namespace kennel_bambino.web.Services
         }
 
         /// <summary>
-        /// Add new Pattern or subPattern to database.
+        /// Add new pattern to database.
         /// </summary>
         /// <param name="Pattern"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Get all Patterns and subPatterns.
+        /// Get all patterns and subPatterns.
         /// </summary>
         /// <returns></returns>
         #region Get all Patterns
@@ -75,7 +75,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Get Pattern by id from database.
+        /// Get pattern by id from database.
         /// </summary>
         /// <param name="PatternId"></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Update the Pattern's data from database.
+        /// Update the pattern's data from database.
         /// </summary>
         /// <param name="Pattern"></param>
         /// <returns></returns>
@@ -131,7 +131,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Remove the Pattern from database.
+        /// Remove the pattern from database.
         /// </summary>
         /// <param name="patternId"></param>
         #region Remove Pattern

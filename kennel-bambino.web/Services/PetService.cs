@@ -165,7 +165,7 @@ namespace kennel_bambino.web.Services
 
                 if (petImages != null)
                 {
-                    foreach (var imageName in UpdateAndUploadProductImages(pet, petImages))
+                    foreach (var imageName in UploadProductImages(petImages))
                     {
                         _context.Photos.Add(new Photo
                         {
@@ -230,7 +230,9 @@ namespace kennel_bambino.web.Services
 
             var pet = GetPetById(petId);
 
-            _context.Pets.Remove(pet);
+            pet.IsDelete = true;
+
+            _context.Pets.Update(pet);
             _context.SaveChanges();
         }
 
@@ -240,7 +242,9 @@ namespace kennel_bambino.web.Services
 
             var pet = await GetPetByIdAsync(petId);
 
-            _context.Pets.Remove(pet);
+            pet.IsDelete = true;
+
+            _context.Pets.Update(pet);
             await _context.SaveChangesAsync();
         }
         #endregion
@@ -339,7 +343,7 @@ namespace kennel_bambino.web.Services
 
             foreach (var productImage in oldProductImages)
             {
-                if (productImage != "default.png")
+                if (productImage.TextTransform() != "default.png")
                 {
                     string productPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/thumbnails/", productImage);
 

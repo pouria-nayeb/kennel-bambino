@@ -22,7 +22,7 @@ namespace kennel_bambino.web.Services
         }
 
         /// <summary>
-        /// Add new BodyType or subBodyType to database.
+        /// Add new BodyType to database.
         /// </summary>
         /// <param name="bodyType"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Get all BodyTypes and subBodyTypes.
+        /// Get all bodyTypes.
         /// </summary>
         /// <returns></returns>
         #region Get all BodyTypes
@@ -75,7 +75,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Get BodyType by id from database.
+        /// Get bodyType by id from database.
         /// </summary>
         /// <param name="bodyTypeId"></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Update the BodyType's data from database.
+        /// Update the bodyType's data from database.
         /// </summary>
         /// <param name="bodyType"></param>
         /// <returns></returns>
@@ -131,7 +131,7 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
-        /// Remove the BodyType from database.
+        /// Remove the bodyType from database.
         /// </summary>
         /// <param name="bodyTypeId"></param>
         #region Remove BodyType
