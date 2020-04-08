@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="~/admin/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/admin/css/Site.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    <header>
+        <partial name="_NavbarAdmin" />
+    </header>
+
+    <main class="container main-min-height mt-5 pt-5">
+        @RenderBody()
+    </main>
+
+    <footer class="container">
+        <p>Made by <a href="https://seotutor.ir">Pouria Nayeb Ab</a>.</p>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/popper.js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/admin/js/Site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
