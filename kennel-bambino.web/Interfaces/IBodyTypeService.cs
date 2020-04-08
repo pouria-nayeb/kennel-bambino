@@ -12,8 +12,8 @@ namespace kennel_bambino.web.Interfaces
         #endregion
 
         #region Get bodyTypes
-        IEnumerable<BodyType> GetAllBodyTypes();
-        Task<IEnumerable<BodyType>> GetAllBodyTypesAsync();
+        List<BodyType> GetAllBodyTypes();
+        Task<List<BodyType>> GetAllBodyTypesAsync();
         #endregion
 
         #region Get BodyType by id
@@ -29,6 +29,11 @@ namespace kennel_bambino.web.Interfaces
         #region Remove BodyType
         void RemoveBodyType(int bodyTypeId);
         Task RemoveBodyTypeAsync(int bodyTypeId);
+        #endregion
+
+        #region BodyTypesCount
+        int BodyTypesCount();
+        Task<int> BodyTypesCountAsync();
         #endregion
     }
 }

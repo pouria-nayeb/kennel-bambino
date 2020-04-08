@@ -12,6 +12,8 @@ using kennel_bambino.web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using kennel_bambino.web.Interfaces;
+using kennel_bambino.web.Services;
 
 namespace kennel_bambino.web
 {
@@ -34,6 +36,8 @@ namespace kennel_bambino.web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddRazorPages();
+
+            services.AddTransient<IBodyTypeService, BodyTypeService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

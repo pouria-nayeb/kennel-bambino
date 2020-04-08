@@ -1,0 +1,46 @@
+﻿@page
+@model kennel_bambino.web.Pages.Admin.BodyTypes.CreateModel
+
+@{
+    ViewData["Title"] = "Create new body type";
+}
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-danger">
+        <i class="fa fa-exclamation-circle fa-fw"></i> @ViewData["Message"]
+    </div>
+}
+
+<div class="card border-secondary mb-3">
+
+    <div class="card-header text-capitalize">
+        <i class="fa fa-plus fa-fw"></i> @ViewData["Title"]
+    </div>
+
+    <div class="card-body">
+
+        <form method="post" autocomplete="off">
+
+            <!-- title -->
+            <div class="form-group">
+                <label class="form-control-label" asp-for="BodyType.Title"></label>
+                <input type="text" asp-for="BodyType.Title" class="form-control" />
+                <span asp-validation-for="BodyType.Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-plus fa-fw"></i> Add
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

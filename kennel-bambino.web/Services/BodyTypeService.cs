@@ -69,9 +69,13 @@ namespace kennel_bambino.web.Services
         /// </summary>
         /// <returns></returns>
         #region Get all BodyTypes
-        public IEnumerable<BodyType> GetAllBodyTypes() => _context.BodyTypes.ToList();
+        public List<BodyType> GetAllBodyTypes() => _context.BodyTypes
+            .OrderByDescending(bt => bt.BodyTypeId)
+            .ToList();
 
-        public async Task<IEnumerable<BodyType>> GetAllBodyTypesAsync() => await _context.BodyTypes.ToListAsync();
+        public async Task<List<BodyType>> GetAllBodyTypesAsync() => await _context.BodyTypes
+            .OrderByDescending(bt => bt.BodyTypeId)
+            .ToListAsync();
         #endregion
 
         /// <summary>
@@ -150,6 +154,16 @@ namespace kennel_bambino.web.Services
             _context.BodyTypes.Remove(bodyType);
             await _context.SaveChangesAsync();
         }
+        #endregion
+
+        /// <summary>
+        /// Count of bodytypes in database.
+        /// </summary>
+        /// <returns></returns>
+        #region BodyTypes count
+        public int BodyTypesCount() => _context.BodyTypes.Count();
+
+        public async Task<int> BodyTypesCountAsync() => await _context.BodyTypes.CountAsync();
         #endregion
     }
 }
