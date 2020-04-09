@@ -68,10 +68,10 @@ namespace kennel_bambino.web.Services
         /// Get all eyeColors.
         /// </summary>
         /// <returns></returns>
-        #region Get all eyeColors
-        public IEnumerable<EyeColor> GetAllEyeColors() => _context.EyeColors.ToList();
+        #region Get eyeColors
+        public List<EyeColor> GetEyeColors() => _context.EyeColors.ToList();
 
-        public async Task<IEnumerable<EyeColor>> GetAllEyeColorsAsync() => await _context.EyeColors.ToListAsync();
+        public async Task<List<EyeColor>> GetEyeColorsAsync() => await _context.EyeColors.ToListAsync();
         #endregion
 
         /// <summary>
@@ -150,6 +150,16 @@ namespace kennel_bambino.web.Services
             _context.EyeColors.Remove(eyeColor);
             await _context.SaveChangesAsync();
         }
+        #endregion
+
+        /// <summary>
+        /// Eyecolors count.
+        /// </summary>
+        /// <returns></returns>
+        #region EyeColor count
+        public int EyeColorsCount() => _context.EyeColors.Count();
+
+        public async Task<int> EyeColorsCountAsync() => await _context.EyeColors.CountAsync();
         #endregion
     }
 }

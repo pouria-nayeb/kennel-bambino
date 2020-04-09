@@ -12,8 +12,8 @@ namespace kennel_bambino.web.Interfaces
         #endregion
 
         #region Get Patterns
-        IEnumerable<Pattern> GetAllPatterns();
-        Task<IEnumerable<Pattern>> GetAllPatternsAsync();
+        List<Pattern> GetPatterns();
+        Task<List<Pattern>> GetPatternsAsync();
         #endregion
 
         #region Get Pattern by id
@@ -29,6 +29,11 @@ namespace kennel_bambino.web.Interfaces
         #region Remove Pattern
         void RemovePattern(int patternId);
         Task RemovePatternAsync(int patternId);
+        #endregion
+
+        #region PatternsCount
+        int PatternCount();
+        Task<int> PatternCountAsync();
         #endregion
     }
 }

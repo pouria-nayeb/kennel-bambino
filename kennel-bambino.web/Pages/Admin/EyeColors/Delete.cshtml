@@ -1,7 +1,7 @@
 ﻿@page "{id:min(1)}"
-@model kennel_bambino.web.Pages.Admin.BodyTypes.DeleteModel
+@model kennel_bambino.web.Pages.Admin.EyeColors.DeleteModel
 @{
-    ViewData["Title"] = "Delete body type";
+    ViewData["Title"] = "Delete eye color";
 }
 
 @if (ViewData["Message"] != null)
@@ -21,18 +21,18 @@
 
         <form method="post">
 
-            <input type="hidden" asp-for="BodyType.BodyTypeId" />
+            <input type="hidden" asp-for="EyeColor.EyeColorId" />
 
             <div class="table-responsive w-100">
                 <table class="table table-borderless table-striped">
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <td>@Model.BodyType.BodyTypeId</td>
+                            <td>@Model.EyeColor.EyeColorId</td>
                         </tr>
                         <tr>
-                            <th>Title</th>
-                            <td>@Model.BodyType.Title</td>
+                            <th>Name</th>
+                            <td>@Model.EyeColor.Name</td>
                         </tr>
                     </tbody>
                 </table>

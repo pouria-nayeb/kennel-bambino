@@ -69,9 +69,9 @@ namespace kennel_bambino.web.Services
         /// </summary>
         /// <returns></returns>
         #region Get all Patterns
-        public IEnumerable<Pattern> GetAllPatterns() => _context.Patterns.ToList();
+        public List<Pattern> GetPatterns() => _context.Patterns.ToList();
 
-        public async Task<IEnumerable<Pattern>> GetAllPatternsAsync() => await _context.Patterns.ToListAsync();
+        public async Task<List<Pattern>> GetPatternsAsync() => await _context.Patterns.ToListAsync();
         #endregion
 
         /// <summary>
@@ -150,6 +150,16 @@ namespace kennel_bambino.web.Services
             _context.Patterns.Remove(Pattern);
             await _context.SaveChangesAsync();
         }
+        #endregion
+
+        /// <summary>
+        /// Patterns count.
+        /// </summary>
+        /// <returns></returns>
+        #region PatternsCount
+        public int PatternCount() => _context.Patterns.Count();
+
+        public async Task<int> PatternCountAsync() => await _context.Patterns.CountAsync();
         #endregion
     }
 }

@@ -12,8 +12,8 @@ namespace kennel_bambino.web.Interfaces
         #endregion
 
         #region Get eyeColors
-        IEnumerable<EyeColor> GetAllEyeColors();
-        Task<IEnumerable<EyeColor>> GetAllEyeColorsAsync();
+        List<EyeColor> GetEyeColors();
+        Task<List<EyeColor>> GetEyeColorsAsync();
         #endregion
 
         #region Get eyeColor by id
@@ -29,6 +29,11 @@ namespace kennel_bambino.web.Interfaces
         #region Remove eyeColor
         void RemoveEyeColor(int eyeColorId);
         Task RemoveEyeColorAsync(int eyeColorId);
+        #endregion
+
+        #region EyeColorCount
+        int EyeColorsCount();
+        Task<int> EyeColorsCountAsync();
         #endregion
     }
 }
