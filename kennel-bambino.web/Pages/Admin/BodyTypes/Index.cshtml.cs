@@ -24,7 +24,7 @@ namespace kennel_bambino.web.Pages.Admin.BodyTypes
         public async Task OnGet()
         {
             // step 4: feed BodyTypes property with data in database.
-            BodyTypes = await _bodyTypeService.GetAllBodyTypesAsync();
+            BodyTypes = await _bodyTypeService.GetBodyTypesAsync();
             BodyTypesCount = await _bodyTypeService.BodyTypesCountAsync();
         }
     }

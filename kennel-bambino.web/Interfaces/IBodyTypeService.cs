@@ -12,8 +12,8 @@ namespace kennel_bambino.web.Interfaces
         #endregion
 
         #region Get bodyTypes
-        List<BodyType> GetAllBodyTypes();
-        Task<List<BodyType>> GetAllBodyTypesAsync();
+        List<BodyType> GetBodyTypes();
+        Task<List<BodyType>> GetBodyTypesAsync();
         #endregion
 
         #region Get BodyType by id

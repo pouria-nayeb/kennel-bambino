@@ -69,11 +69,11 @@ namespace kennel_bambino.web.Services
         /// </summary>
         /// <returns></returns>
         #region Get all BodyTypes
-        public List<BodyType> GetAllBodyTypes() => _context.BodyTypes
+        public List<BodyType> GetBodyTypes() => _context.BodyTypes
             .OrderByDescending(bt => bt.BodyTypeId)
             .ToList();
 
-        public async Task<List<BodyType>> GetAllBodyTypesAsync() => await _context.BodyTypes
+        public async Task<List<BodyType>> GetBodyTypesAsync() => await _context.BodyTypes
             .OrderByDescending(bt => bt.BodyTypeId)
             .ToListAsync();
         #endregion
