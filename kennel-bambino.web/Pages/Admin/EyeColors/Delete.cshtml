@@ -1,5 +1,6 @@
 ﻿@page "{id:min(1)}"
 @model kennel_bambino.web.Pages.Admin.EyeColors.DeleteModel
+
 @{
     ViewData["Title"] = "Delete eye color";
 }
@@ -10,6 +11,10 @@
         <i class="fa fa-exclamation-circle fa-fw"></i> @ViewData["Message"]
     </div>
 }
+
+<a asp-page="Index" class="btn btn-primary border border-info text-capitalize my-4">
+    <i class="fas fa-arrow-left fa-fw"></i> Back to list
+</a>
 
 <div class="card border-secondary mb-3">
 

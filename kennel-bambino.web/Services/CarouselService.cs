@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -74,9 +75,13 @@ namespace kennel_bambino.web.Services
         /// </summary>
         /// <returns></returns>
         #region Get carousels
-        public IEnumerable<Carousel> GetCarousels() => _context.Carousels.ToList();
+        public IEnumerable<Carousel> GetCarousels() => _context.Carousels
+            .OrderByDescending(c => c.CarouselId)
+            .ToList();
 
-        public async Task<IEnumerable<Carousel>> GetCarouselsAsync() => await _context.Carousels.ToListAsync();
+        public async Task<IEnumerable<Carousel>> GetCarouselsAsync() => await _context.Carousels
+            .OrderByDescending(c => c.CarouselId)
+            .ToListAsync();
         #endregion
 
         /// <summary>
@@ -147,6 +152,8 @@ namespace kennel_bambino.web.Services
         {
             var carousel = GetCarouselById(carouselId);
 
+            RemoveDeletedCarousel(carousel);
+
             _context.Carousels.Remove(carousel);
             _context.SaveChanges();
         }
@@ -155,9 +162,35 @@ namespace kennel_bambino.web.Services
         {
             var carousel = await GetCarouselByIdAsync(carouselId);
 
+            RemoveDeletedCarousel(carousel);
+
             _context.Carousels.Remove(carousel);
             await _context.SaveChangesAsync();
         }
+        #endregion
+
+        /// <summary>
+        /// Carousels count.
+        /// </summary>
+        /// <returns></returns>
+        #region Carousels count
+        public int CarouselsCount() => _context.Carousels.Count();
+
+        public async Task<int> CarouselsCountAsync() => await _context.Carousels.CountAsync();
+        #endregion
+
+        #region Helpers
+
+        private void RemoveDeletedCarousel(Carousel carousel) 
+        {
+            string carouselToDeletePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/carousels/", carousel.ImageName);
+
+            if (File.Exists(carouselToDeletePath))
+            {
+                File.Delete(carouselToDeletePath);
+            }
+        }
+
         #endregion
     }
 }

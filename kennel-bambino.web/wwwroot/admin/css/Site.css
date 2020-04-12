@@ -6,3 +6,11 @@
     text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
     font-weight: 500;
 }
+
+.fixed-width-image-75 {
+    width: 75px
+}
+
+.max-width-520px {
+    max-width: 520px
+}

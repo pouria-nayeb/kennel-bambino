@@ -40,6 +40,8 @@ namespace kennel_bambino.web
             services.AddTransient<IBodyTypeService, BodyTypeService>();
             services.AddTransient<IEyeColorService, EyeColorService>();
             services.AddTransient<IPatternService, PatternService>();
+
+            services.AddTransient<ICarouselService, CarouselService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

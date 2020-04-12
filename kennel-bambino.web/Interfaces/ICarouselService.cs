@@ -31,5 +31,10 @@ namespace kennel_bambino.web.Interfaces
         void RemoveCarousel(int carouselId);
         Task RemoveCarouselAsync(int carouselId);
         #endregion
+
+        #region Carousels count
+        int CarouselsCount();
+        Task<int> CarouselsCountAsync();
+        #endregion
     }
 }
