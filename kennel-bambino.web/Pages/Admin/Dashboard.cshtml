@@ -1,12 +1,134 @@
 ﻿@page
 @model kennel_bambino.web.Pages.Admin.DashboardModel
+
+@inject IBodyTypeService bodyTypeService
+@inject IEyeColorService eyeColorService
+@inject IPatternService patternService
+@inject ICarouselService carouselService
+@inject IMessageService messageService
+@inject IPhotoService photoService
+
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "PetShop Dashboard";
 }
 
 <section>
 
-    <h1 class="text-capitalize display-4 mb-5">@ViewBag.Title</h1>
+    <h1 class="text-capitalize display-4 mb-5">
+        <i class="fa fa-paw fa-fw"></i> @ViewBag.Title
+    </h1>
+
+    <div class="row text-center">
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">BodyTypes Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4">@bodyTypeService.BodyTypesCount()</h4>
+                    <a href="/Admin/BodyTypes" class="btn btn-primary btn-sm text-capitalize">
+                        BodyType List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">EyeColors Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4">@eyeColorService.EyeColorsCount()</h4>
+                    <a href="/Admin/EyeColors" class="btn btn-primary btn-sm text-capitalize">
+                        EyeColor List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary border border-warning mb-3">
+                <div class="card-header">Patterns Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4">@patternService.PatternCount()</h4>
+                    <a href="/Admin/Patterns" class="btn btn-primary btn-sm border border-warning text-capitalize">
+                        Pattern List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Carousels Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4">@carouselService.CarouselsCount()</h4>
+                    <a href="/Admin/Carousels" class="btn btn-primary btn-sm text-capitalize">
+                        Carousel List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Photos Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4">@photoService.PhotosCount()</h4>
+                    <a href="/Admin/Photos" class="btn btn-primary btn-sm text-capitalize">
+                        Photo List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary border border-info mb-3">
+                <div class="card-header">Messages Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4">@messageService.ContactsCount()</h4>
+                    <a href="/Admin/Messages" class="btn btn-primary btn-sm border border-info text-capitalize">
+                        Message List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Groups Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4"></h4>
+                    <a href="/Admin/Groups" class="btn btn-primary btn-sm text-capitalize">
+                        Group List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">SubGroups Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4"></h4>
+                    <a href="/Admin/Groups" class="btn btn-primary btn-sm text-capitalize">
+                        SubGroup List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="card text-white bg-primary border border-danger mb-3">
+                <div class="card-header">Pets Count</div>
+                <div class="card-body">
+                    <h4 class="card-title display-4"></h4>
+                    <a href="/Admin/Pets" class="btn btn-primary btn-sm border border-danger text-capitalize">
+                        Pet List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </section>
 

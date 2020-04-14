@@ -24,14 +24,14 @@ namespace kennel_bambino.web.Pages.Admin.Photos
         [BindProperty]
         public Photo Photo { get; set; }
 
-        public SelectList PetsSelectListItem { get; set; }
+        public SelectList PetsSelectList { get; set; }
 
         public IFormFile Image { get; set; }
 
 
         public async Task OnGet()
         {
-            PetsSelectListItem = new SelectList(await _photoService.GetPetSelectListItemAsync(), "Value", "Id");
+            await FillPetsSelectListItem();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -54,6 +54,8 @@ namespace kennel_bambino.web.Pages.Admin.Photos
 
                     _logger.LogError($"Photo {nameof(CreateModel)} database error.");
 
+                    await FillPetsSelectListItem();
+
                     return Page();
                 }
             }
@@ -63,7 +65,15 @@ namespace kennel_bambino.web.Pages.Admin.Photos
 
             _logger.LogError($"Photo {nameof(CreateModel)} database error.");
 
+            await FillPetsSelectListItem();
+
             return Page();
+        }
+
+
+        private async Task FillPetsSelectListItem() 
+        {
+            PetsSelectList = new SelectList(await _photoService.GetPetSelectListItemAsync(), "Value", "Text");
         }
     }
 }

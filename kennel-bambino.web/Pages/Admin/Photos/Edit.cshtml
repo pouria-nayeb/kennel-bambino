@@ -1,4 +1,4 @@
-﻿@page "id:min(1)"
+﻿@page "{id:min(1)}"
 @model kennel_bambino.web.Pages.Admin.Photos.EditModel
 
 @{
@@ -23,8 +23,25 @@
         <form method="post" autocomplete="off" enctype="multipart/form-data">
 
             <input type="hidden" asp-for="Photo.PhotoId" />
-            <input type="hidden" asp-for="Photo.PetId" />
             <input type="hidden" asp-for="Photo.PhotoName" />
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- pet ddl list -->
+                    <div class="form-group">
+                        <label asp-for="Photo.PetId">Pet Name</label>
+                        <select asp-for="Photo.PetId" asp-items="Model.PetsSelectListItem" class="form-control">
+                            <option value="" disabled="disabled">Please choose one pet</option>
+                        </select>
+
+                        <span asp-validation-for="Photo.PetId" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
 
             <!-- photo -->
             <div class="form-group">
@@ -33,7 +50,7 @@
                         <input type="file" class="custom-file-input" asp-for="Photo.PhotoName" id="photo" name="Image" />
                         <label class="custom-file-label" asp-for="Photo.PhotoName">Choose file</label>
                     </div>
-                    <img src="~/images/carousels/@Model.Photo.PhotoName" alt="@Model.Photo.PhotoName"
+                    <img src="~/images/thumbnails/@Model.Photo.PhotoName" alt="@Model.Photo.PhotoName"
                          asp-append-version="true" class="rounded mx-3 fixed-width-image-75" />
                 </div>
             </div>

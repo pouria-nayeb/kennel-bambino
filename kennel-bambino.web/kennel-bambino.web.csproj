@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\carousels\" />
-    <Folder Include="wwwroot\images\thumbnails\" />
   </ItemGroup>
 
 </Project>

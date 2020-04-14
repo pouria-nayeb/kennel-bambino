@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:min(1)}"
 @model kennel_bambino.web.Pages.Admin.Photos.DeleteModel
 
 @{
@@ -38,7 +38,7 @@
                         <tr>
                             <th>Image</th>
                             <td>
-                                <img src="~/images/carousels/@Model.Photo.PhotoName" alt="@Model.Photo.Pet.Title"
+                                <img src="~/images/thumbnails/@Model.Photo.PhotoName" alt="@Model.Photo.Pet.Title"
                                      class="rounded fixed-width-image-75" />
                             </td>
                         </tr>

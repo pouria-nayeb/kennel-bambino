@@ -26,16 +26,19 @@
         </button>
     </div>
 
-    <nav>
-        <ul class="pagination pagination-sm justify-content-center">
-            @for (int i = 1; i <= Model.PhotoPagingVM.PageCount; i++)
-            {
-                <li class="page-item @(Model.PhotoPagingVM.PageNumber == i ? "active" : "")">
-                    <a class="page-link" href="/Admin/Photos?PageNumber=@i">@i</a>
-                </li>
-            }
-        </ul>
-    </nav>
+    @if (Model.PhotoPagingVM.PageCount > 1)
+    {
+        <nav>
+            <ul class="pagination pagination-sm justify-content-center">
+                @for (int i = 1; i <= Model.PhotoPagingVM.PageCount; i++)
+                {
+                    <li class="page-item @(Model.PhotoPagingVM.PageNumber == i ? "active" : "")">
+                        <a class="page-link" href="/Admin/Photos?PageNumber=@i">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
 
     @if (Model.PhotoPagingVM.Photos.Any())
     {
@@ -55,8 +58,8 @@
                         <tr>
                             <td>@photo.PhotoId</td>
                             <td>
-                                <img src="~/images/thumbnails/@photo.PhotoName" 
-                                     alt="@photo.Pet.Title" 
+                                <img src="~/images/thumbnails/@photo.PhotoName"
+                                     alt="@photo.Pet.Title"
                                      class="rounded fixed-width-image-75" />
                             </td>
                             <td>

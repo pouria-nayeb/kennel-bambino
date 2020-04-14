@@ -7,7 +7,6 @@ namespace kennel_bambino.web.Models
         [Key]
         public int PhotoId { get; set; }
 
-        [Required]
         [StringLength(75)]
         public string PhotoName { get; set; }
 

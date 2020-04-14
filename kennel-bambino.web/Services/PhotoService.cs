@@ -90,6 +90,7 @@ namespace kennel_bambino.web.Services
             return new PhotoPagingViewModel
             {
                 Photos = photos.Skip(skip).Take(take)
+                .Include(p => p.Pet)
                 .OrderByDescending(p => p.PhotoId)
                 .ToList(),
                 PageNumber = pageNumber,
@@ -110,6 +111,7 @@ namespace kennel_bambino.web.Services
             return new PhotoPagingViewModel
             {
                 Photos = await photos.Skip(skip).Take(take)
+                .Include(p => p.Pet)
                 .OrderByDescending(p => p.PhotoId)
                 .ToListAsync(),
                 PageNumber = pageNumber,
@@ -143,9 +145,11 @@ namespace kennel_bambino.web.Services
         /// <returns></returns>
         #region Get photo by id
         public Photo GetPhotoById(int photoId) => _context.Photos
+            .Include(p => p.Pet)
             .SingleOrDefault(g => g.PhotoId == photoId);
 
         public async Task<Photo> GetPhotoByIdAsync(int photoId) => await _context.Photos
+            .Include(p => p.Pet)
             .SingleOrDefaultAsync(g => g.PhotoId == photoId);
         #endregion
 

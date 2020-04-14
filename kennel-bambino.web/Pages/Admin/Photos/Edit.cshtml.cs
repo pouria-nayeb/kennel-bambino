@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using kennel_bambino.web.Interfaces;
+﻿using kennel_bambino.web.Interfaces;
 using kennel_bambino.web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Pages.Admin.Photos
 {
@@ -15,11 +13,11 @@ namespace kennel_bambino.web.Pages.Admin.Photos
     {
 
         private readonly IPhotoService _photoService;
-        private readonly Logger<EditModel> _logger;
+        private readonly ILogger<EditModel> _logger;
 
         // step 1: create a constructor
         public EditModel(IPhotoService photoService,
-            Logger<EditModel> logger)
+            ILogger<EditModel> logger)
         {
             // step 2: inject message service
             _photoService = photoService;
@@ -28,6 +26,8 @@ namespace kennel_bambino.web.Pages.Admin.Photos
 
         [BindProperty]
         public Photo Photo { get; set; }
+
+        public SelectList PetsSelectListItem { get; set; }
 
         public IFormFile Image { get; set; }
 
@@ -39,6 +39,8 @@ namespace kennel_bambino.web.Pages.Admin.Photos
             }
 
             Photo = await _photoService.GetPhotoByIdAsync(id.Value);
+
+            PetsSelectListItem = new SelectList(await _photoService.GetPetSelectListItemAsync(), "Value", "Text");
 
             if (Photo == null)
             {
