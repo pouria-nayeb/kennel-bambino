@@ -3,53 +3,56 @@ using kennel_bambino.web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace kennel_bambino.web.Pages.Admin.Carousels
+namespace kennel_bambino.web.Pages.Admin.Photos
 {
     public class CreateModel : PageModel
     {
-        private readonly ICarouselService _carouselService;
+        private readonly IPhotoService _photoService;
         private readonly ILogger<CreateModel> _logger;
 
-        public CreateModel(ICarouselService carouselService,
+        public CreateModel(IPhotoService photoService,
             ILogger<CreateModel> logger)
         {
-            _carouselService = carouselService;
+            _photoService = photoService;
             _logger = logger;
         }
 
         [BindProperty]
-        public Carousel Carousel { get; set; }
+        public Photo Photo { get; set; }
+
+        public SelectList PetsSelectListItem { get; set; }
 
         public IFormFile Image { get; set; }
 
 
-        public void OnGet()
+        public async Task OnGet()
         {
-
+            PetsSelectListItem = new SelectList(await _photoService.GetPetSelectListItemAsync(), "Value", "Id");
         }
 
-        public async Task<IActionResult> OnPostAsync() 
+        public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
                 // admin inputs is valid
 
-                if (await _carouselService.AddCarouselAsync(Carousel, Image) != null)
+                if (await _photoService.AddPhotoAsync(Photo, Image) != null)
                 {
                     // success
-                    TempData["Success"] = "New carousel successfully added.";
+                    TempData["Success"] = "New photo successfully added.";
 
                     return RedirectToPage("Index");
                 }
-                else 
+                else
                 {
                     // db failure
                     ViewData["Message"] = "Database error, contact the developer to fix the error.";
 
-                    _logger.LogError($"Carousel {nameof(CreateModel)} database error.");
+                    _logger.LogError($"Photo {nameof(CreateModel)} database error.");
 
                     return Page();
                 }
@@ -58,7 +61,7 @@ namespace kennel_bambino.web.Pages.Admin.Carousels
             // wrong inputs
             ViewData["Message"] = "Your inputs is not valid.";
 
-            _logger.LogError($"Carousel {nameof(CreateModel)} database error.");
+            _logger.LogError($"Photo {nameof(CreateModel)} database error.");
 
             return Page();
         }

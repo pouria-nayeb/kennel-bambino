@@ -70,7 +70,7 @@ namespace kennel_bambino.web.Services
         /// <param name="pageSize"></param>
         /// <returns></returns>
         #region Get contacts
-        public ContactPagingViewModel GetContacts(int pageNumber = 1, int pageSize = 30)
+        public ContactPagingViewModel GetContacts(int pageNumber = 1, int pageSize = 24)
         {
             IQueryable<Contact> contacts = _context.Contacts;
 
@@ -90,7 +90,7 @@ namespace kennel_bambino.web.Services
             };
         }
 
-        public async Task<ContactPagingViewModel> GetContactsAsync(int pageNumber = 1, int pageSize = 30)
+        public async Task<ContactPagingViewModel> GetContactsAsync(int pageNumber = 1, int pageSize = 24)
         {
             IQueryable<Contact> contacts = _context.Contacts;
 

@@ -5,21 +5,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace kennel_bambino.web.Pages.Admin.Carousels
+namespace kennel_bambino.web.Pages.Admin.Photos
 {
     public class DeleteModel : PageModel
     {
-        private readonly ICarouselService _carouselService;
+        private readonly IPhotoService _photoService;
         private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(ICarouselService carouselService,
+        public DeleteModel(IPhotoService photoService,
             ILogger<DeleteModel> logger)
         {
-            _carouselService = carouselService;
+            _photoService = photoService;
             _logger = logger;
         }
 
-        public Carousel Carousel { get; set; }
+        public Photo Photo { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace kennel_bambino.web.Pages.Admin.Carousels
                 return BadRequest();
             }
 
-            Carousel = await _carouselService.GetCarouselByIdAsync(id.Value);
+            Photo = await _photoService.GetPhotoByIdAsync(id.Value);
 
-            if (Carousel == null)
+            if (Photo == null)
             {
                 return NotFound();
             }
@@ -38,10 +38,10 @@ namespace kennel_bambino.web.Pages.Admin.Carousels
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id) 
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            TempData["Success"] = "Carousel successfully removed.";
-            await _carouselService.RemoveCarouselAsync(id);
+            TempData["Success"] = "Photo successfully removed.";
+            await _photoService.RemovePhotoAsync(id);
 
             return RedirectToPage("Index");
         }

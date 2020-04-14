@@ -5,21 +5,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace kennel_bambino.web.Pages.Admin.Carousels
+namespace kennel_bambino.web.Pages.Admin.Messages
 {
     public class DeleteModel : PageModel
     {
-        private readonly ICarouselService _carouselService;
+        private readonly IMessageService _messageService;
         private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(ICarouselService carouselService,
+        public DeleteModel(IMessageService messageService,
             ILogger<DeleteModel> logger)
         {
-            _carouselService = carouselService;
+            _messageService = messageService;
             _logger = logger;
         }
 
-        public Carousel Carousel { get; set; }
+        public Contact Contact { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace kennel_bambino.web.Pages.Admin.Carousels
                 return BadRequest();
             }
 
-            Carousel = await _carouselService.GetCarouselByIdAsync(id.Value);
+            Contact = await _messageService.GetContactByIdAsync(id.Value);
 
-            if (Carousel == null)
+            if (Contact == null)
             {
                 return NotFound();
             }
@@ -38,10 +38,10 @@ namespace kennel_bambino.web.Pages.Admin.Carousels
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id) 
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            TempData["Success"] = "Carousel successfully removed.";
-            await _carouselService.RemoveCarouselAsync(id);
+            TempData["Success"] = "Message successfully removed.";
+            await _messageService.RemoveContactAsync(id);
 
             return RedirectToPage("Index");
         }

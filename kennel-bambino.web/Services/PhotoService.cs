@@ -4,6 +4,7 @@ using kennel_bambino.web.Interfaces;
 using kennel_bambino.web.Models;
 using kennel_bambino.web.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -118,6 +119,24 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
+        /// Pet select list item
+        /// </summary>
+        /// <returns></returns>
+        #region PetSelectListItem
+        public List<SelectListItem> GetPetSelectListItem() => _context.Pets.Select(p => new SelectListItem
+        {
+            Text = p.Title,
+            Value = p.PetId.ToString()
+        }).ToList();
+
+        public async Task<List<SelectListItem>> GetPetSelectListItemAsync() => await _context.Pets.Select(p => new SelectListItem
+        {
+            Text = p.Title,
+            Value = p.PetId.ToString()
+        }).ToListAsync();
+        #endregion
+
+        /// <summary>
         /// Get photo by id from database.
         /// </summary>
         /// <param name="PhotoId"></param>
@@ -201,6 +220,16 @@ namespace kennel_bambino.web.Services
             _context.Photos.Remove(photo);
             await _context.SaveChangesAsync();
         }
+        #endregion
+
+        /// <summary>
+        /// Photos count.
+        /// </summary>
+        /// <returns></returns>
+        #region Photos count
+        public int PhotosCount() => _context.Photos.Count();
+
+        public async Task<int> PhotosCountAsync() => await _context.Photos.CountAsync();
         #endregion
 
         /// <summary>
