@@ -209,5 +209,17 @@ namespace kennel_bambino.web.Services
         public int ContactsCount() => _context.Contacts.Count();
         public async Task<int> ContactsCountAsync() => await _context.Contacts.CountAsync();
         #endregion
+
+        /// <summary>
+        /// New contacts count
+        /// </summary>
+        /// <returns></returns>
+        #region New contacts count
+        public int NewContactsCount() => _context.Contacts.Where(c => c.IsChecked == false).Count();
+
+        public async Task<int> NewContactsCountAsync() => await _context.Contacts
+            .Where(c => c.IsChecked == false)
+            .CountAsync();
+        #endregion
     }
 }

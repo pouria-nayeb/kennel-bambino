@@ -18,6 +18,10 @@
         <i class="fa fa-paw fa-fw"></i> @ViewBag.Title
     </h1>
 
+    <a href="/Admin/Messages" class="btn btn-primary border border-info text-capitalize mb-4">
+        <span class="badge badge-info mx-1">@messageService.NewContactsCount()</span> New messages
+    </a>
+
     <div class="row text-center">
 
         <div class="col-12 col-sm-4">

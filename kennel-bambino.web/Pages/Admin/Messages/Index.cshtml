@@ -7,7 +7,9 @@
 
 <section>
 
-    <h1 class="text-capitalize display-4 mb-5">@ViewBag.Title</h1>
+    <h1 class="text-capitalize display-4 mb-5">
+        <i class="fa fa-inbox text-light fa-fw"></i> @ViewBag.Title
+    </h1>
 
     @if (TempData["Success"] != null)
     {
@@ -45,12 +47,12 @@
                 <header class="card-header">PhoneNumber: <span class="text-light">@contact.PhoneNumber</span></header>
 
                 <div class="card-body">
-                    <h3 class="card-title">@contact.Title</h3>
+                    <h2 class="card-title mb-4">@contact.Title</h2>
                     <p class="card-text text-light">@contact.Description</p>
 
                     <hr />
 
-                    <span class="my-2 small">@contact.SubmitDate.ToLongDateString()</span>
+                    <span class="my-2 small">Date: @contact.SubmitDate.ToLongDateString()</span>
                 </div>
 
                 <footer class="card-footer clearfix">

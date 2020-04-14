@@ -41,5 +41,10 @@ namespace kennel_bambino.web.Interfaces
         int ContactsCount();
         Task<int> ContactsCountAsync();
         #endregion
+
+        #region New contacts count
+        int NewContactsCount();
+        Task<int> NewContactsCountAsync();
+        #endregion
     }
 }
