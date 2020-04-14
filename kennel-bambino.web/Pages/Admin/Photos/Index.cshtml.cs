@@ -17,9 +17,9 @@ namespace kennel_bambino.web.Pages.Admin.Photos
         }
 
         // step 3: strong-binding
-        public PhotoPagingViewModel PhotoPagingVM { get; set; }
+        public PhotoPagingViewModel PhotoPagingVM { get; private set; }
 
-        public int PhotosCount { get; set; }
+        public int PhotosCount { get; private set; }
 
 
         public async Task OnGetAsync(int pageNumber = 1, int pageSize = 32)

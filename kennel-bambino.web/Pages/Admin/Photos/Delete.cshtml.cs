@@ -10,13 +10,10 @@ namespace kennel_bambino.web.Pages.Admin.Photos
     public class DeleteModel : PageModel
     {
         private readonly IPhotoService _photoService;
-        private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(IPhotoService photoService,
-            ILogger<DeleteModel> logger)
+        public DeleteModel(IPhotoService photoService)
         {
             _photoService = photoService;
-            _logger = logger;
         }
 
         public Photo Photo { get; set; }

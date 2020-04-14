@@ -17,9 +17,9 @@ namespace kennel_bambino.web.Pages.Admin.Messages
         }
 
         // step 3: strong-binding
-        public ContactPagingViewModel ContactPagingVM { get; set; }
+        public ContactPagingViewModel ContactPagingVM { get; private set; }
 
-        public int ContactsCount { get; set; }
+        public int ContactsCount { get; private set; }
 
         public async Task OnGetAsync(int pageNumber = 1, int pageSize = 24)
         {

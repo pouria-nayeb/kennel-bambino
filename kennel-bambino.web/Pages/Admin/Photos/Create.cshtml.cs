@@ -70,7 +70,6 @@ namespace kennel_bambino.web.Pages.Admin.Photos
             return Page();
         }
 
-
         private async Task FillPetsSelectListItem() 
         {
             PetsSelectList = new SelectList(await _photoService.GetPetSelectListItemAsync(), "Value", "Text");
