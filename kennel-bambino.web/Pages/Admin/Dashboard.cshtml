@@ -7,6 +7,8 @@
 @inject ICarouselService carouselService
 @inject IMessageService messageService
 @inject IPhotoService photoService
+@inject IGroupService groupService
+@inject IPetService petService
 
 @{
     ViewData["Title"] = "PetShop Dashboard";
@@ -100,7 +102,7 @@
             <div class="card text-white bg-primary mb-3">
                 <div class="card-header">Groups Count</div>
                 <div class="card-body">
-                    <h4 class="card-title display-4"></h4>
+                    <h4 class="card-title display-4">@groupService.GroupsCount()</h4>
                     <a href="/Admin/Groups" class="btn btn-primary btn-sm text-capitalize">
                         Group List
                     </a>
@@ -112,7 +114,7 @@
             <div class="card text-white bg-primary mb-3">
                 <div class="card-header">SubGroups Count</div>
                 <div class="card-body">
-                    <h4 class="card-title display-4"></h4>
+                    <h4 class="card-title display-4">@groupService.SubGroupsCount()</h4>
                     <a href="/Admin/Groups" class="btn btn-primary btn-sm text-capitalize">
                         SubGroup List
                     </a>
@@ -124,7 +126,7 @@
             <div class="card text-white bg-primary border border-danger mb-3">
                 <div class="card-header">Pets Count</div>
                 <div class="card-body">
-                    <h4 class="card-title display-4"></h4>
+                    <h4 class="card-title display-4">@petService.PetsCount()</h4>
                     <a href="/Admin/Pets" class="btn btn-primary btn-sm border border-danger text-capitalize">
                         Pet List
                     </a>

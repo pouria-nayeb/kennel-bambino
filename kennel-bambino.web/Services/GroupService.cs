@@ -227,9 +227,19 @@ namespace kennel_bambino.web.Services
 
 
         #region Groups count
-        public int GroupCount() => _context.Groups.Count();
+        public int AllGroupsCount() => _context.Groups.Count();
 
-        public async Task<int> GroupCountAsync() => await _context.Groups.CountAsync();
+        public async Task<int> AllGroupsCountAsync() => await _context.Groups.CountAsync();
+        #endregion
+
+        #region Groups
+        public int GroupsCount() => _context.Groups.Where(g => g.ParentId == null).Count();
+        public async Task<int> CountAsync() => await _context.Groups.Where(g => g.ParentId == null).CountAsync();
+        #endregion
+
+        #region SubGroups
+        public int SubGroupsCount() => _context.Groups.Where(g => g.ParentId != null).Count();
+        public async Task<int> SubGroupsCountAsync() => await _context.Groups.Where(g => g.ParentId != null).CountAsync();
         #endregion
     }
 }

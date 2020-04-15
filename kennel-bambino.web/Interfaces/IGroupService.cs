@@ -54,8 +54,18 @@ namespace kennel_bambino.web.Interfaces
         #endregion
 
         #region Groups count
-        int GroupCount();
-        Task<int> GroupCountAsync();
+        int AllGroupsCount();
+        Task<int> AllGroupsCountAsync();
+        #endregion
+
+        #region Groups
+        int GroupsCount();
+        Task<int> CountAsync();
+        #endregion
+
+        #region SubGroups
+        int SubGroupsCount();
+        Task<int> SubGroupsCountAsync();
         #endregion
     }
 }

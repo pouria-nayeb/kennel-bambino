@@ -27,7 +27,7 @@ namespace kennel_bambino.web.Pages.Admin.Groups
 
             SubGroups = await _groupService.GetSubGroupsAsync();
 
-            GroupsCount = await _groupService.GroupCountAsync();
+            GroupsCount = await _groupService.AllGroupsCountAsync();
         }
     }
 }

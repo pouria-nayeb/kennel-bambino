@@ -111,10 +111,7 @@ namespace kennel_bambino.web.Pages.Admin.Pets
             EyeColorSelectList = new SelectList(_eyeColorService.GetEyeColorSelectList(), "Value", "Text", eyeColorId);
             PatternSelectList = new SelectList(_patternService.GetPatternSelectList(), "Value", "Text", patternId);
             GroupSelectList = new SelectList(_groupService.GetGroupSelectList(), "Value", "Text", groupId);
-
-            var subgroups = _groupService.GetSubGroupSelectList(groupId);
-
-            SubGroupSelectList = new SelectList(subgroups, "Value", "Text", subgroupId);
+            SubGroupSelectList = new SelectList(_groupService.GetSubGroupSelectList(groupId), "Value", "Text", subgroupId);
         }
     }
 }
