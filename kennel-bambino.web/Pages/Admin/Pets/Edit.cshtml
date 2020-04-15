@@ -1,0 +1,287 @@
+﻿@page "{id:min(1)}"
+@model kennel_bambino.web.Pages.Admin.Pets.EditModel
+
+@{
+    ViewData["Title"] = "Edit pet";
+}
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-danger">
+        <i class="fa fa-exclamation-circle fa-fw"></i> @ViewData["Message"]
+    </div>
+}
+
+<div class="card border-secondary mb-3">
+
+    <div class="card-header text-capitalize">
+        <i class="fa fa-pen fa-fw"></i> @ViewData["Title"]
+    </div>
+
+    <div class="card-body">
+
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="Pet.PetId" />
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- title -->
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="Pet.Title"></label>
+                        <input type="text" asp-for="Pet.Title" class="form-control" />
+
+                        <span asp-validation-for="Pet.Title" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- code -->
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="Pet.Code"></label>
+                        <input asp-for="Pet.Code" class="form-control" />
+
+                        <span asp-validation-for="Pet.Code" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="row">
+
+                <div class="col-12 col-sm-4">
+
+                    <!-- bodytype ddl list -->
+                    <div class="form-group">
+                        <label asp-for="Pet.BodyTypeId"></label>
+                        <select asp-for="Pet.BodyTypeId" asp-items="Model.BodyTypeSelectList" class="form-control">
+                            <option value="">Please choose one bodytype</option>
+                        </select>
+
+                        <span asp-validation-for="Pet.BodyTypeId" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-4">
+
+                    <!-- eyecolor ddl list -->
+                    <div class="form-group">
+                        <label asp-for="Pet.EyeColorId"></label>
+                        <select asp-for="Pet.EyeColorId" asp-items="Model.EyeColorSelectList" class="form-control">
+                            <option value="">Please choose one eyecolor</option>
+                        </select>
+
+                        <span asp-validation-for="Pet.EyeColorId" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-4">
+
+                    <!-- pattern ddl list -->
+                    <div class="form-group">
+                        <label asp-for="Pet.PatternId"></label>
+                        <select asp-for="Pet.PatternId" asp-items="Model.PatternSelectList" class="form-control">
+                            <option value="">Please choose one pattern</option>
+                        </select>
+
+                        <span asp-validation-for="Pet.PatternId" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- group ddl list -->
+                    <div class="form-group">
+                        <label asp-for="Pet.GroupId"></label>
+                        <select asp-for="Pet.GroupId" asp-items="Model.GroupSelectList" class="form-control">
+                            <option value="">Please choose one group</option>
+                        </select>
+
+                        <span asp-validation-for="Pet.GroupId" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- subgroup ddl list -->
+                    <div class="form-group">
+                        <label asp-for="Pet.SubGroupId"></label>
+                        <select asp-for="Pet.SubGroupId" asp-items="Model.SubGroupSelectList" class="form-control">
+                            <option value="">Please choose one subgroup</option>
+                        </select>
+
+                        <span asp-validation-for="Pet.SubGroupId" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- birthdate -->
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="Pet.BirthDate"></label>
+                        <input asp-for="Pet.BirthDate" class="form-control" />
+
+                        <span asp-validation-for="Pet.BirthDate" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- price -->
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="Pet.Price"></label>
+                        <input type="text" asp-for="Pet.Price" class="form-control" />
+
+                        <span asp-validation-for="Pet.Price" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- description -->
+                    <div class="form-group">
+                        <label asp-for="Pet.Description"></label>
+                        <textarea class="form-control" asp-for="Pet.Description" rows="3"></textarea>
+                        <small class="form-text text-muted">Write it descriptive, for SEO purposes.</small>
+
+                        <span asp-validation-for="Pet.Description" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- information -->
+                    <div class="form-group">
+                        <label asp-for="Pet.Information"></label>
+                        <textarea class="form-control" asp-for="Pet.Information" rows="3"></textarea>
+
+                        <span asp-validation-for="Pet.Information" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- gender -->
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" asp-for="Pet.Gender" />
+                            <label class="custom-control-label" asp-for="Pet.Gender"></label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-6">
+
+                    <!-- ready for devlivery -->
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" asp-for="Pet.ReadyForDelivery" />
+                            <label class="custom-control-label" asp-for="Pet.ReadyForDelivery"></label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- photos -->
+            <div class="form-group">
+                <div class="input-group my-4 w-100 max-width-520px">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" asp-for="Pet.Photos" multiple id="images" name="Images" />
+                        <label class="custom-file-label" asp-for="Pet.Photos">Choose file</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-pen fa-fw"></i> Edit
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(document).ready(function () {
+            $("#images").change(function (event) {
+                var files = event.target.files;
+                if (files.length == 1) {
+                    var fileName = event.target.files[0].name;
+                    if (fileName.length > 0) {
+                        $(this).next().text(fileName);
+                    }
+                } else {
+                    $(this).next().text(files.length + " images selected.");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // display nothing in subgroup, till admin select one group
+
+        $("#Pet_GroupId").change(function () {
+
+            // remove all prevoius subgroups
+            $("#Pet_SubGroupId").empty();
+
+            $.getJSON("/Api/Groups/" + $("#Pet_GroupId :selected").val(), function (data) {
+
+                $.each(data, function () {
+                    $("#Pet_SubGroupId").append('<option value=' + this.value + '>' + this.text + '</option>');
+                });
+
+            });
+
+        });
+    </script>
+}

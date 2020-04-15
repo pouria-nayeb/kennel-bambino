@@ -26,6 +26,7 @@ namespace kennel_bambino.web.Models
 
         public bool Gender { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
         public bool ReadyForDelivery { get; set; }

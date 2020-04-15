@@ -1,6 +1,7 @@
 ﻿using kennel_bambino.web.Data;
 using kennel_bambino.web.Interfaces;
 using kennel_bambino.web.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -72,6 +73,24 @@ namespace kennel_bambino.web.Services
         public List<EyeColor> GetEyeColors() => _context.EyeColors.ToList();
 
         public async Task<List<EyeColor>> GetEyeColorsAsync() => await _context.EyeColors.ToListAsync();
+        #endregion
+
+        /// <summary>
+        /// Get eyecolor selectlist
+        /// </summary>
+        /// <returns></returns>
+        #region Get eyecolor selectlist
+        public List<SelectListItem> GetEyeColorSelectList() => _context.EyeColors.Select(e => new SelectListItem
+        {
+            Text = e.Name,
+            Value = e.EyeColorId.ToString()
+        }).ToList();
+
+        public async Task<List<SelectListItem>> GetEyeColorSelectListAsync() => await _context.EyeColors.Select(e => new SelectListItem
+        {
+            Text = e.Name,
+            Value = e.EyeColorId.ToString()
+        }).ToListAsync();
         #endregion
 
         /// <summary>

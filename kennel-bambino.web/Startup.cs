@@ -3,7 +3,6 @@ using kennel_bambino.web.Interfaces;
 using kennel_bambino.web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,15 +29,19 @@ namespace kennel_bambino.web
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddControllers();
+
             services.AddRazorPages();
 
             services.AddTransient<IBodyTypeService, BodyTypeService>();
             services.AddTransient<IEyeColorService, EyeColorService>();
             services.AddTransient<IPatternService, PatternService>();
             services.AddTransient<ICarouselService, CarouselService>();
-
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IPhotoService, PhotoService>();
+
+            services.AddTransient<IGroupService, GroupService>();
+            services.AddTransient<IPetService, PetService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -65,6 +68,8 @@ namespace kennel_bambino.web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

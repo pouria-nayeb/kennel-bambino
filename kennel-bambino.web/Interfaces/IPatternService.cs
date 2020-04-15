@@ -1,4 +1,5 @@
 ﻿using kennel_bambino.web.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,6 +15,11 @@ namespace kennel_bambino.web.Interfaces
         #region Get Patterns
         List<Pattern> GetPatterns();
         Task<List<Pattern>> GetPatternsAsync();
+        #endregion
+
+        #region Get pattern selectlist
+        List<SelectListItem> GetPatternSelectList();
+        Task<List<SelectListItem>> GetPatternSelectListAsync();
         #endregion
 
         #region Get Pattern by id

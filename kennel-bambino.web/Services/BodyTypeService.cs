@@ -1,6 +1,7 @@
 ﻿using kennel_bambino.web.Data;
 using kennel_bambino.web.Interfaces;
 using kennel_bambino.web.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -79,13 +80,31 @@ namespace kennel_bambino.web.Services
         #endregion
 
         /// <summary>
+        /// Get bodytype select list items
+        /// </summary>
+        /// <returns></returns>
+        #region BodyType selectlistitem
+        public List<SelectListItem> GetBodyTypeSelectList() => _context.BodyTypes.Select(b => new SelectListItem
+        {
+            Text = b.Title,
+            Value = b.BodyTypeId.ToString()
+        }).ToList();
+
+        public async Task<List<SelectListItem>> GetBodyTypeSelectListAsync() => await _context.BodyTypes.Select(b => new SelectListItem
+        {
+            Text = b.Title,
+            Value = b.BodyTypeId.ToString()
+        }).ToListAsync();
+        #endregion
+
+        /// <summary>
         /// Get bodyType by id from database.
         /// </summary>
         /// <param name="bodyTypeId"></param>
         /// <returns></returns>
         #region Get BodyType by id
         public BodyType GetBodyTypeById(int bodyTypeId) => _context.BodyTypes
-            .SingleOrDefault(g => g.BodyTypeId == bodyTypeId);
+                .SingleOrDefault(g => g.BodyTypeId == bodyTypeId);
 
         public async Task<BodyType> GetBodyTypeByIdAsync(int bodyTypeId) => await _context.BodyTypes
             .SingleOrDefaultAsync(g => g.BodyTypeId == bodyTypeId);

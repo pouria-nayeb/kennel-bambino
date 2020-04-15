@@ -1,6 +1,7 @@
 ﻿using kennel_bambino.web.Data;
 using kennel_bambino.web.Interfaces;
 using kennel_bambino.web.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -72,6 +73,20 @@ namespace kennel_bambino.web.Services
         public List<Pattern> GetPatterns() => _context.Patterns.ToList();
 
         public async Task<List<Pattern>> GetPatternsAsync() => await _context.Patterns.ToListAsync();
+        #endregion
+
+        #region Get pattern selectlist
+        public List<SelectListItem> GetPatternSelectList() => _context.Patterns.Select(p => new SelectListItem
+        {
+            Text = p.Name,
+             Value = p.PatternId.ToString()
+        }).ToList();
+
+        public async Task<List<SelectListItem>> GetPatternSelectListAsync() => await _context.Patterns.Select(p => new SelectListItem
+        {
+            Text = p.Name,
+            Value = p.PatternId.ToString()
+        }).ToListAsync();
         #endregion
 
         /// <summary>

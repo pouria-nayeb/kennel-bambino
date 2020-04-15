@@ -1,4 +1,5 @@
 ﻿using kennel_bambino.web.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,6 +15,11 @@ namespace kennel_bambino.web.Interfaces
         #region Get eyeColors
         List<EyeColor> GetEyeColors();
         Task<List<EyeColor>> GetEyeColorsAsync();
+        #endregion
+
+        #region Get eyecolor selectlist
+        List<SelectListItem> GetEyeColorSelectList();
+        Task<List<SelectListItem>> GetEyeColorSelectListAsync();
         #endregion
 
         #region Get eyeColor by id

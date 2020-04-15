@@ -1,4 +1,5 @@
 ﻿using kennel_bambino.web.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,6 +15,11 @@ namespace kennel_bambino.web.Interfaces
         #region Get bodyTypes
         List<BodyType> GetBodyTypes();
         Task<List<BodyType>> GetBodyTypesAsync();
+        #endregion
+
+        #region Get bodttype selectlist
+        List<SelectListItem> GetBodyTypeSelectList();
+        Task<List<SelectListItem>> GetBodyTypeSelectListAsync();
         #endregion
 
         #region Get BodyType by id

@@ -1,8 +1,8 @@
 ﻿@page "{id:min(1)}"
-@model kennel_bambino.web.Pages.Admin.BodyTypes.DeleteModel
+@model kennel_bambino.web.Pages.Admin.Pets.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete body type";
+    ViewData["Title"] = "Delete pet";
 }
 
 @if (ViewData["Message"] != null)
@@ -26,18 +26,24 @@
 
         <form method="post">
 
-            <input type="hidden" asp-for="BodyType.BodyTypeId" />
+            <input type="hidden" asp-for="Pet.PetId" />
 
             <div class="table-responsive w-100">
                 <table class="table table-borderless table-striped">
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <td>@Model.BodyType.BodyTypeId</td>
+                            <td>@Model.Pet.PetId</td>
                         </tr>
                         <tr>
-                            <th>Title</th>
-                            <td>@Model.BodyType.Title</td>
+                            <th>NationalId</th>
+                            <td>
+                                @Model.Pet.Code
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>@Model.Pet.Price</td>
                         </tr>
                     </tbody>
                 </table>
@@ -49,12 +55,9 @@
                 </button>
             </div>
 
-            <div class="alert alert-primary border border-warning">
-                <i class="fa fa-exclamation-triangle fa-fw"></i> This field have some dependencies, be caution if you want to delete.
-            </div>
-
         </form>
 
     </div>
 
 </div>
+

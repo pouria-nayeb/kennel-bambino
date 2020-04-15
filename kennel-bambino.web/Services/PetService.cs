@@ -143,11 +143,10 @@ namespace kennel_bambino.web.Services
         /// <param name="PetId"></param>
         /// <returns></returns>
         #region Get pet by id
-        public Pet GetPetById(int petId) => _context.Pets
-            .SingleOrDefault(g => g.PetId == petId);
+        public Pet GetPetById(int petId) => _context.Pets.SingleOrDefault(p =>p.PetId == petId);
 
         public async Task<Pet> GetPetByIdAsync(int petId) => await _context.Pets
-            .SingleOrDefaultAsync(g => g.PetId == petId);
+            .SingleOrDefaultAsync(p => p.PetId == petId);
         #endregion
 
         /// <summary>
@@ -339,20 +338,20 @@ namespace kennel_bambino.web.Services
 
         private List<string> UpdateAndUploadProductImages(Pet pet, List<IFormFile> productImages)
         {
-            List<string> oldProductImages = GetProductImageNames(pet.PetId);
+            //List<string> oldProductImages = GetProductImageNames(pet.PetId);
 
-            foreach (var productImage in oldProductImages)
-            {
-                if (productImage.TextTransform() != "default.png")
-                {
-                    string productPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/thumbnails/", productImage);
+            //foreach (var productImage in oldProductImages)
+            //{
+            //    if (productImage.TextTransform() != "default.png")
+            //    {
+            //        string productPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/thumbnails/", productImage);
 
-                    if (new FileInfo(productPath).Exists)
-                    {
-                        new FileInfo(productPath).Delete();
-                    }
-                }
-            }
+            //        if (new FileInfo(productPath).Exists)
+            //        {
+            //            new FileInfo(productPath).Delete();
+            //        }
+            //    }
+            //}
 
             List<string> productImagesList = new List<string>();
 

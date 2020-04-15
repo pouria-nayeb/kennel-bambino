@@ -3,6 +3,7 @@ using kennel_bambino.web.Helpers;
 using kennel_bambino.web.Interfaces;
 using kennel_bambino.web.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -92,15 +93,52 @@ namespace kennel_bambino.web.Services
             .ToListAsync();
         #endregion
 
+        #region Get groups selectlist
+        public List<SelectListItem> GetGroupSelectList() => _context.Groups
+            .Where(g => g.ParentId == null)
+            .Select(g => new SelectListItem
+            {
+                Text = g.Title,
+                Value = g.GroupId.ToString()
+            }).ToList();
+
+        public async Task<List<SelectListItem>> GetGroupSelectListAsync() => await _context.Groups
+            .Where(g => g.ParentId == null)
+            .Select(g => new SelectListItem
+            {
+                Text = g.Title,
+                Value = g.GroupId.ToString()
+            }).ToListAsync();
+        #endregion
+
         /// <summary>
         /// Get all subgroups.
         /// </summary>
         /// <returns></returns>
         #region Get subgroups
-        public IEnumerable<Group> GetSubGroups() => _context.Groups.Where(g => g.ParentId != null).ToList();
+        public IEnumerable<Group> GetSubGroups() => _context.Groups
+            .Where(g => g.ParentId != null).ToList();
 
         public async Task<IEnumerable<Group>> GetSubGroupsAsync() => await _context.Groups
             .Where(g => g.ParentId != null).ToListAsync();
+        #endregion
+
+        #region Get subgroups selectlist
+        public List<SelectListItem> GetSubGroupSelectList(int groupId) => _context.Groups
+            .Where(g => g.ParentId == groupId)
+            .Select(g => new SelectListItem
+            {
+                Text = g.Title,
+                Value = g.GroupId.ToString()
+            }).ToList();
+
+        public async Task<List<SelectListItem>> GetSubGroupSelectListAsync(int groupId) => await _context.Groups
+            .Where(g => g.ParentId == groupId)
+            .Select(g => new SelectListItem
+            {
+                Text = g.Title,
+                Value = g.GroupId.ToString()
+            }).ToListAsync();
         #endregion
 
         /// <summary>
@@ -109,9 +147,12 @@ namespace kennel_bambino.web.Services
         /// <param name="groupId"></param>
         /// <returns></returns>
         #region Get group by id
-        public Group GetGroupById(int groupId) => _context.Groups.SingleOrDefault(g => g.GroupId == groupId);
+        public Group GetGroupById(int groupId) => _context.Groups
+            .AsNoTracking()
+            .SingleOrDefault(g => g.GroupId == groupId);
 
         public async Task<Group> GetGroupByIdAsync(int groupId) => await _context.Groups
+            .AsNoTracking()
             .SingleOrDefaultAsync(g => g.GroupId == groupId);
         #endregion
 
@@ -182,6 +223,13 @@ namespace kennel_bambino.web.Services
             _context.Groups.Remove(group);
             await _context.SaveChangesAsync();
         }
+        #endregion
+
+
+        #region Groups count
+        public int GroupCount() => _context.Groups.Count();
+
+        public async Task<int> GroupCountAsync() => await _context.Groups.CountAsync();
         #endregion
     }
 }

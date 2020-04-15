@@ -1,8 +1,8 @@
 ﻿@page "{id:min(1)}"
-@model kennel_bambino.web.Pages.Admin.BodyTypes.DeleteModel
+@model kennel_bambino.web.Pages.Admin.Groups.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete body type";
+    ViewData["Title"] = "Delete group";
 }
 
 @if (ViewData["Message"] != null)
@@ -26,18 +26,28 @@
 
         <form method="post">
 
-            <input type="hidden" asp-for="BodyType.BodyTypeId" />
+            <input type="hidden" asp-for="Group.GroupId" />
 
             <div class="table-responsive w-100">
                 <table class="table table-borderless table-striped">
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <td>@Model.BodyType.BodyTypeId</td>
+                            <td>@Model.Group.GroupId</td>
                         </tr>
+                        @if (Model.Group.ImageName != null)
+                        {
+                            <tr>
+                                <th>Image</th>
+                                <td>
+                                    <img src="~/images/thumbnails/@Model.Group.ImageName" alt="@Model.Group.Title"
+                                         class="rounded fixed-width-image-75" />
+                                </td>
+                            </tr>
+                        }
                         <tr>
                             <th>Title</th>
-                            <td>@Model.BodyType.Title</td>
+                            <td>@Model.Group.Title</td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,3 +68,4 @@
     </div>
 
 </div>
+

@@ -1,0 +1,104 @@
+﻿@page
+@model kennel_bambino.web.Pages.Admin.Groups.IndexModel
+
+@{
+    ViewBag.Title = "Group list";
+}
+
+<section>
+
+    <h1 class="text-capitalize display-4 mb-5">
+        <i class="fa fa-list-alt text-success fa-fw"></i> @ViewBag.Title
+    </h1>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            <i class="fa fa-check fa-fw"></i> @TempData["Success"]
+        </div>
+    }
+
+    <div class="clearfix">
+        <a asp-page="Create" class="btn btn-primary text-capitalize float-left mb-3">
+            <i class="fa fa-plus fa-fw"></i> Add new
+        </a>
+
+        <button type="button" class="btn btn-primary float-right mb-3">
+            <i class="fa fa-th-list fa-fw"></i> @Model.GroupsCount
+        </button>
+    </div>
+
+    @if (Model.Groups.Any())
+    {
+        <div class="table-responsive">
+
+            <table class="table table-borderless table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Subgroups</th>
+                        <th scope="col">Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Group group in Model.Groups)
+                    {
+                        <tr>
+                            <td>@group.GroupId</td>
+                            <td>@group.Title</td>
+                            <td>
+                                @foreach (var specie in Model.SubGroups.Where(sg => sg.ParentId == group.GroupId))
+                                {
+                                    <span class="border border-primary rounded d-inline-block p-1 m-1">
+                                        @specie.Title &nbsp;
+                                        <a asp-page="Edit"
+                                           asp-route-id="@specie.GroupId"
+                                           asp-route-parentId="@specie.ParentId"
+                                           class="btn btn-sm btn-outline-warning">
+                                            <i class="fa fa-pen fa-fw"></i> Edit
+                                        </a>
+                                        <a asp-page="Delete" asp-route-id="@specie.GroupId" class="btn btn-sm btn-outline-danger">
+                                            <i class="fa fa-trash-alt fa-fw"></i> Delete
+                                        </a>
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-page="Create"
+                                   asp-route-id="@group.GroupId"
+                                   class="btn btn-outline-success">
+                                    <i class="fa fa-plus fa-fw"></i> Add SubGroup
+                                </a>
+
+                                <a asp-page="Edit"
+                                   asp-route-id="@group.GroupId"
+                                   class="btn btn-outline-warning">
+                                    <i class="fa fa-pen fa-fw"></i> Edit
+                                </a>
+
+                                @if (Model.SubGroups.Where(sb => sb.ParentId == group.GroupId).Count() == 0)
+                                {
+                                    <a asp-page="Delete" asp-route-id="@group.GroupId" class="btn btn-outline-danger">
+                                        <i class="fa fa-trash-alt fa-fw"></i> Delete
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-primary border border-warning">
+            <p class="mb-0">
+                <i class="fa fa-exclamation-triangle fa-fw mx-2"></i> No Pattern Exist.
+            </p>
+        </div>
+    }
+
+</section>
+
