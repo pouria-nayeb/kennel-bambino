@@ -276,6 +276,8 @@
 
             $.getJSON("/Api/Groups/" + $("#Pet_GroupId :selected").val(), function (data) {
 
+                $("#Pet_SubGroupId").append('<option value="">Please choose one subgroup</option>');
+
                 $.each(data, function () {
                     $("#Pet_SubGroupId").append('<option value=' + this.value + '>' + this.text + '</option>');
                 });

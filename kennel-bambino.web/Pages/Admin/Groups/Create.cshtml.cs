@@ -27,7 +27,7 @@ namespace kennel_bambino.web.Pages.Admin.Groups
 
         public IFormFile Image { get; set; }
 
-        public void OnGet(int? id)
+        public void OnGetAsync(int? id)
         {
             FeedParentId(id);
         }

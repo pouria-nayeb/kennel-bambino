@@ -52,16 +52,16 @@ namespace kennel_bambino.web.Pages.Admin.Pets
 
         public SelectList SubGroupSelectList { get; set; }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return BadRequest();
             }
 
-            Pet = _petService.GetPetById(id.Value);
+            Pet = await _petService.GetPetByIdAsync(id.Value);
 
-            SeedInitialValues(Pet.BodyTypeId, Pet.EyeColorId, Pet.PatternId, Pet.GroupId, Pet.SubGroupId.Value);
+            await SeedInitialValues(Pet.BodyTypeId, Pet.EyeColorId, Pet.PatternId, Pet.GroupId, Pet.SubGroupId.Value);
 
             if (Pet == null)
             {
@@ -89,7 +89,7 @@ namespace kennel_bambino.web.Pages.Admin.Pets
 
                     _logger.LogError($"Pet {nameof(CreateModel)} database error.");
 
-                    SeedInitialValues(Pet.BodyTypeId, Pet.EyeColorId, Pet.PatternId, Pet.GroupId, Pet.SubGroupId.Value);
+                    await SeedInitialValues(Pet.BodyTypeId, Pet.EyeColorId, Pet.PatternId, Pet.GroupId, Pet.SubGroupId.Value);
 
                     return Page();
                 }
@@ -100,17 +100,17 @@ namespace kennel_bambino.web.Pages.Admin.Pets
 
             _logger.LogError($"Pet {nameof(CreateModel)} invalid inputs.");
 
-            SeedInitialValues(Pet.BodyTypeId, Pet.EyeColorId, Pet.PatternId, Pet.GroupId, Pet.SubGroupId.Value);
+            await SeedInitialValues(Pet.BodyTypeId, Pet.EyeColorId, Pet.PatternId, Pet.GroupId, Pet.SubGroupId.Value);
 
             return Page();
         }
 
-        private void SeedInitialValues(int bodyTypeId, int eyeColorId, int patternId, int groupId, int subgroupId)
+        private async Task SeedInitialValues(int bodyTypeId, int eyeColorId, int patternId, int groupId, int subgroupId)
         {
-            BodyTypeSelectList = new SelectList(_bodyTypeService.GetBodyTypeSelectList(), "Value", "Text", bodyTypeId);
-            EyeColorSelectList = new SelectList(_eyeColorService.GetEyeColorSelectList(), "Value", "Text", eyeColorId);
-            PatternSelectList = new SelectList(_patternService.GetPatternSelectList(), "Value", "Text", patternId);
-            GroupSelectList = new SelectList(_groupService.GetGroupSelectList(), "Value", "Text", groupId);
+            BodyTypeSelectList = new SelectList(await _bodyTypeService.GetBodyTypeSelectListAsync(), "Value", "Text", bodyTypeId);
+            EyeColorSelectList = new SelectList(await _eyeColorService.GetEyeColorSelectListAsync(), "Value", "Text", eyeColorId);
+            PatternSelectList = new SelectList(await _patternService.GetPatternSelectListAsync(), "Value", "Text", patternId);
+            GroupSelectList = new SelectList(await _groupService.GetGroupSelectListAsync(), "Value", "Text", groupId);
             SubGroupSelectList = new SelectList(_groupService.GetSubGroupSelectList(groupId), "Value", "Text", subgroupId);
         }
     }
