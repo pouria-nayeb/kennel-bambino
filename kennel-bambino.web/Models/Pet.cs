@@ -34,6 +34,9 @@ namespace kennel_bambino.web.Models
         [Required]
         public double Price { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime? RegisterDate { get; set; }
+
         public bool IsDelete { get; set; }
 
         [Required]

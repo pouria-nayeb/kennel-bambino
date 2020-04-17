@@ -1,0 +1,106 @@
+﻿@page "{id:min(1)}"
+@model kennel_bambino.web.Pages.Pets.DetailsModel
+
+@{
+    ViewData["Title"] = $"{Model.Pet.Title} Details";
+}
+
+    <div class="container">
+
+        <nav class="mt-4" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-area="" asp-page="/Index">Home</a></li>
+                <li class="breadcrumb-item active">@Model.Pet.Title</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+
+            <div class="col-12 col-md-4">
+                <img src="~/images/thumbnails/@Model.Pet.Photos.First().PhotoName"
+                     alt="@Model.Pet.Title" id="select-image" class="img-fluid d-block mx-auto" style="max-width:320px;max-height:320px" />
+
+                <div class="row">
+                    @foreach (var photo in Model.Pet.Photos)
+                    {
+                        <div class="col-4 border border-light">
+                            <img src="~/images/thumbnails/@photo.PhotoName" alt="@Model.Pet.Title" 
+                                 class="img-fluid cursor-pointer" style="max-width:100px;max-height:100px" />
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+            <div class="col-12 col-md-8">
+
+                <h1 class="my-5" style="color:#989797">@ViewData["Title"]</h1>
+
+                <div class="clearfix my-1">
+                    @if (Model.Pet.ReadyForDelivery)
+                    {
+                        <span class="badge badge-success badge-pill p-2 float-left">
+                            <i class="fa fa-check fa-fw"></i> Ready For Delivery
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger badge-pill p-2 float-left">
+                            <i class="fa fa-times fa-fw"></i> Not Ready For Delivery
+                        </span>
+                    }
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>NationalID</th>
+                            <td>@Model.Pet.Code</td>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
+                            <td>@(Model.Pet.Gender ? "Male" : "Female")</td>
+                        </tr>
+                        <tr>
+                            <th>Body Type</th>
+                            <td>@Model.Pet.BodyType.Title</td>
+                        </tr>
+                        <tr>
+                            <th>Eye Color</th>
+                            <td>@Model.Pet.EyeColor.Name</td>
+                        </tr>
+                        <tr>
+                            <th>Pattern</th>
+                            <td>@Model.Pet.Pattern.Name</td>
+                        </tr>
+                        <tr>
+                            <th>Info</th>
+                            <td>@Model.Pet.Information</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>@Model.Pet.Description</td>
+                        </tr>
+                        <tr>
+                            <th>BirthDate</th>
+                            <td>@Model.Pet.BirthDate.ToLongDateString()</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $(".img-fluid").click(function (event) {
+            $("#select-image").attr("src", $(this).attr("src"));
+        });
+    });
+</script>
+}

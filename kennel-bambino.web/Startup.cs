@@ -33,6 +33,11 @@ namespace kennel_bambino.web
 
             services.AddRazorPages();
 
+            services.AddRazorPages().AddRazorPagesOptions(options =>
+            {
+               options.Conventions.AuthorizeFolder("/Admin");
+            });
+
             services.AddTransient<IBodyTypeService, BodyTypeService>();
             services.AddTransient<IEyeColorService, EyeColorService>();
             services.AddTransient<IPatternService, PatternService>();

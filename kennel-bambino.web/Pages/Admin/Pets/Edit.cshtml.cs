@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -73,6 +74,8 @@ namespace kennel_bambino.web.Pages.Admin.Pets
 
         public async Task<IActionResult> OnPostAsync()
         {
+            Pet.RegisterDate = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 // admin inputs is valid

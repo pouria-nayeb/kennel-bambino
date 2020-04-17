@@ -1,0 +1,24 @@
+﻿@model Pet  
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card mb-3">
+        <img class="d-block img-fluid mx-auto" style="max-height:250px;max-width:250px"
+             src="~/images/thumbnails/@Model.Photos.First().PhotoName" alt="@Model.Title" />
+        <div class="card-body" style="min-height:85px">
+            <p class="card-text"> @Model.Description </p>
+        </div>
+        <div class="card-footer text-muted clearfix">
+
+            <span class="float-left small mt-2">
+                @if (Model.RegisterDate != null)
+                {
+                    @Model.RegisterDate.Value.Humanize()
+                }
+            </span>
+
+            <a asp-area="" asp-page="/Pets/Details" asp-route-id="@Model.PetId"
+               class="btn btn-primary float-right">See Details</a>
+
+        </div>
+    </div>
+</div>

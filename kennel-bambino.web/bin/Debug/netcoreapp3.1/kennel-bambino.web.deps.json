@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v3.1": {
       "kennel-bambino.web/1.0.0": {
         "dependencies": {
+          "Humanizer.Core.uk": "2.7.9",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "3.1.2",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.2",
           "Microsoft.AspNetCore.Identity.UI": "3.1.2",
@@ -301,6 +302,27 @@
         },
         "compile": {
           "kennel-bambino.web.dll": {}
+        }
+      },
+      "Humanizer.Core/2.7.9": {
+        "runtime": {
+          "lib/netstandard2.0/Humanizer.dll": {
+            "assemblyVersion": "2.7.0.0",
+            "fileVersion": "2.7.9.7024"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Humanizer.dll": {}
+        }
+      },
+      "Humanizer.Core.uk/2.7.9": {
+        "dependencies": {
+          "Humanizer.Core": "2.7.9"
+        },
+        "resources": {
+          "lib/netstandard2.0/uk/Humanizer.resources.dll": {
+            "locale": "uk"
+          }
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.2": {
@@ -3848,6 +3870,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Humanizer.Core/2.7.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CvBPqAgYcvRCDgtHi9pUdPpZqWGyqfJe02qDugMCy4/xia+q0xm/xxqTO55aZkJapdgqrvHb0I5u+sHLzovp+Q==",
+      "path": "humanizer.core/2.7.9",
+      "hashPath": "humanizer.core.2.7.9.nupkg.sha512"
+    },
+    "Humanizer.Core.uk/2.7.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8s6LdUjCR+b9K3IC25d68VikDh5d9HKWxnZngiVLfPlyMa0UYX9GRAynN/9LWRoOiCL4QRxMeeZYWgEbCK7pcw==",
+      "path": "humanizer.core.uk/2.7.9",
+      "hashPath": "humanizer.core.uk.2.7.9.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.2": {
       "type": "package",

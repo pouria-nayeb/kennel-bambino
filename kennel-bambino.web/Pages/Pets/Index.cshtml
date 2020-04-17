@@ -1,0 +1,50 @@
+﻿@page
+@model kennel_bambino.web.Pages.Pets.IndexModel
+
+@{
+    ViewData["Title"] = "All Pets";
+}
+
+    <div class="container my-5">
+
+        <nav class="mt-4" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-area="" asp-page="/Index">Home</a></li>
+                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+            </ol>
+        </nav>
+
+        <div class="row my-4">
+
+            @if (Model.PetPagingVM.Pets.Any())
+            {
+                @foreach (var pet in Model.PetPagingVM.Pets)
+                {
+                    <partial name="_PetPartial" model="pet" />
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <div class="alert alert-warning text-capitalize">
+                        <i class="fa fa-exclamation-triangle fa-fw"></i> No pet exist.
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+@if (Model.PetPagingVM.PageCount > 1)
+{
+    <nav>
+        <ul class="pagination pagination-sm justify-content-center">
+            @for (int i = 1; i <= Model.PetPagingVM.PageCount; i++)
+            {
+                <li class="page-item @(Model.PetPagingVM.PageNumber == i ? "active" : "")">
+                    <a class="page-link" href="/Admin/Photos?PageNumber=@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

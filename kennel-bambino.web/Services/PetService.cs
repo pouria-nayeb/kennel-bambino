@@ -108,6 +108,7 @@ namespace kennel_bambino.web.Services
             {
                 Pets = pets.Skip(skip).Take(take)
                 .Where(p => p.IsDelete == false)
+                .Include(p => p.Photos)
                 .OrderByDescending(p => p.PetId)
                 .ToList(),
                 PageNumber = pageNumber,
@@ -129,6 +130,7 @@ namespace kennel_bambino.web.Services
             {
                 Pets = await pets.Skip(skip).Take(take)
                 .Where(p => p.IsDelete == false)
+                .Include(p => p.Photos)
                 .OrderByDescending(p => p.PetId)
                 .ToListAsync(),
                 PageNumber = pageNumber,
@@ -143,9 +145,18 @@ namespace kennel_bambino.web.Services
         /// <param name="PetId"></param>
         /// <returns></returns>
         #region Get pet by id
-        public Pet GetPetById(int petId) => _context.Pets.SingleOrDefault(p =>p.PetId == petId);
+        public Pet GetPetById(int petId) => _context.Pets
+                        .Include(p => p.BodyType)
+            .Include(p => p.EyeColor)
+            .Include(p => p.Pattern)
+            .Include(p => p.Photos)
+            .SingleOrDefault(p => p.PetId == petId);
 
         public async Task<Pet> GetPetByIdAsync(int petId) => await _context.Pets
+            .Include(p => p.BodyType)
+            .Include(p => p.EyeColor)
+            .Include(p => p.Pattern)
+            .Include(p => p.Photos)
             .SingleOrDefaultAsync(p => p.PetId == petId);
         #endregion
 
@@ -409,6 +420,23 @@ namespace kennel_bambino.web.Services
                    .ToList();
         }
 
+        #endregion
+
+
+        #region Latest pets
+        public List<Pet> LatestPets() => _context.Pets
+            .Where(p => p.IsDelete == false)
+                        .Include(p => p.Photos)
+            .OrderByDescending(p => p.PetId)
+            .Take(9)
+            .ToList();
+
+        public async Task<List<Pet>> LatestPetsAsync() => await _context.Pets.
+            Where(p => p.IsDelete == false)
+            .Include(p => p.Photos)
+            .OrderByDescending(p => p.PetId)
+            .Take(9)
+            .ToListAsync();
         #endregion
     }
 }

@@ -249,13 +249,11 @@ namespace kennel_bambino.web.Data.Migrations
                         .HasMaxLength(75);
 
                     b.Property<string>("ImageName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(75)")
                         .HasMaxLength(75);
 
                     b.Property<byte>("Number")
-                        .HasColumnType("tinyint")
-                        .HasMaxLength(75);
+                        .HasColumnType("tinyint");
 
                     b.HasKey("CarouselId");
 
@@ -402,6 +400,9 @@ namespace kennel_bambino.web.Data.Migrations
                     b.Property<bool>("ReadyForDelivery")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("RegisterDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("SubGroupId")
                         .HasColumnType("int");
 
@@ -436,7 +437,6 @@ namespace kennel_bambino.web.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PhotoName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(75)")
                         .HasMaxLength(75);
 

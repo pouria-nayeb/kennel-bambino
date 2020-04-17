@@ -1,0 +1,100 @@
+﻿@page
+@model kennel_bambino.web.Pages.ContactModel
+
+@{
+    ViewData["Title"] = "Contact us";
+}
+
+<div class="w-100 position-relative text-white text-capitalize font-weight-bolder font-resource" style="background-image:url(../Images/resources/about-us-banner.jpg);background-position:center;background-size:cover;height:320px;font-size:2.5rem">
+    <div class="position-absolute w-25 p-5 rounded-circle text-center" style="left:50%;top:82%;transform:translate(-50%,0);border:15px solid #fff;background-color:rgba(16,136,150,0.9);background-image:url(../Images/resources/pattern.png);background-repeat:repeat;min-width:320px">
+        Contact us
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row" style="margin-top: 15rem">
+
+        <div class="col-12 col-sm-5" style="font-size:1rem;">
+
+            <div class="text-center" style="color:#989797">
+                <a href="mailto:info@petshop.com" style="color:#108896"><i class="fa fa-envelope fa-fw"></i> info [@@] petshop.com</a> &nbsp;
+                <span><i class="fa fa-phone fa-fw"></i> Call Us +1 456 7890</span>
+                <br />
+                <span><i class="fa fa-map-pin mr-3"></i> Lorem Ipsum 505</span>
+
+                <p class="my-5">
+                    Elit uasi quidem minus id omnis a nibh fusce mollis imperdie tlorem ipuset phas ellus ac sodales Lorem ipsum dolor Phas ellus adipisicing elit uasi quidem minus id omnis a nibh fusce mollis imperdie tlorem ipuset campas fincas
+                </p>
+
+                <img src="~/images/resources/contact-us.png" alt="Contact us" class="img-fluid" />
+            </div>
+
+        </div>
+
+        <div class="col-12 col-sm-7">
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success position-relative">
+                    <span class="alert-icon position-absolute"> <i class="fas fa-dog"></i> </span>
+                    @TempData["Success"]
+                </div>
+            }
+
+            @if (ViewData["Message"] != null)
+            {
+                <div class="alert alert-failure">
+                    @ViewData["Message"]
+                </div>
+            }
+
+            <h3 class="text-capitalize" style="font-size: 2.5rem">Get In Touch</h3>
+
+            <div class="mt-4" style="color:#989797;font-size:1rem;">
+
+                <form method="post">
+
+                    <div asp-validation-summary="ModelOnly"></div>
+
+                    <!-- phone number -->
+                    <div class="form-group my-3">
+                        <label asp-for="Contact.PhoneNumber"></label>
+                        <input type="tel" asp-for="Contact.PhoneNumber" class="form-control input-field py-4" />
+
+                        <span class="text-danger" asp-validation-for="Contact.PhoneNumber"></span>
+                    </div>
+
+                    <!-- title -->
+                    <div class="form-group my-3">
+                        <label asp-for="Contact.Title"></label>
+                        <input type="text" asp-for="Contact.Title" class="form-control input-field py-4" />
+
+                        <span class="text-danger" asp-validation-for="Contact.Title"></span>
+                    </div>
+
+                    <!-- description -->
+                    <div class="form-group my-3">
+                        <label asp-for="Contact.Description"></label>
+                        <textarea class="form-control input-field py-4" rows="4" asp-for="Contact.Description"></textarea>
+
+                        <span class="text-danger" asp-validation-for="Contact.Description"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg text-capitalize">Send Message</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

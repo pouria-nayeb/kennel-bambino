@@ -42,5 +42,10 @@ namespace kennel_bambino.web.Interfaces
         int PetsCount();
         Task<int> PetsCountAsync();
         #endregion
+
+        #region Latest pets
+        List<Pet> LatestPets();
+        Task<List<Pet>> LatestPetsAsync();
+        #endregion
     }
 }
