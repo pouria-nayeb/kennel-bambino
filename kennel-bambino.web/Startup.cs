@@ -31,8 +31,6 @@ namespace kennel_bambino.web
 
             services.AddControllers();
 
-            services.AddRazorPages();
-
             services.AddRazorPages().AddRazorPagesOptions(options =>
             {
                options.Conventions.AuthorizeFolder("/Admin");
@@ -44,7 +42,6 @@ namespace kennel_bambino.web
             services.AddTransient<ICarouselService, CarouselService>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IPhotoService, PhotoService>();
-
             services.AddTransient<IGroupService, GroupService>();
             services.AddTransient<IPetService, PetService>();
         }

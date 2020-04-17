@@ -75,13 +75,9 @@ namespace kennel_bambino.web.Services
         /// </summary>
         /// <returns></returns>
         #region Get carousels
-        public IEnumerable<Carousel> GetCarousels() => _context.Carousels
-            .OrderByDescending(c => c.CarouselId)
-            .ToList();
+        public IEnumerable<Carousel> GetCarousels() => _context.Carousels.ToList();
 
-        public async Task<IEnumerable<Carousel>> GetCarouselsAsync() => await _context.Carousels
-            .OrderByDescending(c => c.CarouselId)
-            .ToListAsync();
+        public async Task<IEnumerable<Carousel>> GetCarouselsAsync() => await _context.Carousels.ToListAsync();
         #endregion
 
         /// <summary>

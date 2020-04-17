@@ -103,3 +103,7 @@ body {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.bg-yellow {
+    background-color: #F19F1F !important;
+}
