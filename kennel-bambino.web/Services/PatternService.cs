@@ -176,5 +176,16 @@ namespace kennel_bambino.web.Services
 
         public async Task<int> PatternCountAsync() => await _context.Patterns.CountAsync();
         #endregion
+
+        #region Helpers
+        public void Dispose()
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
+        }
+        #endregion
     }
 }

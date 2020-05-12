@@ -438,5 +438,16 @@ namespace kennel_bambino.web.Services
             .Take(9)
             .ToListAsync();
         #endregion
+
+        #region Helpers
+        public void Dispose()
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
+        }
+        #endregion
     }
 }

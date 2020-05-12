@@ -1,11 +1,12 @@
 ﻿using kennel_bambino.web.Models;
 using kennel_bambino.web.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
 {
-    public interface IMessageService
+    public interface IMessageService : IDisposable
     {
         #region Add new contact
         Contact AddContact(Contact contact);

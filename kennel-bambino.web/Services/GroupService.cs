@@ -241,5 +241,16 @@ namespace kennel_bambino.web.Services
         public int SubGroupsCount() => _context.Groups.Where(g => g.ParentId != null).Count();
         public async Task<int> SubGroupsCountAsync() => await _context.Groups.Where(g => g.ParentId != null).CountAsync();
         #endregion
+
+        #region Helpers
+        private void Dispose() 
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
+        }
+        #endregion
     }
 }

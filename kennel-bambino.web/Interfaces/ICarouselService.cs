@@ -1,11 +1,12 @@
 ﻿using kennel_bambino.web.Models;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
 {
-    public interface ICarouselService
+    public interface ICarouselService : IDisposable
     {
         #region Add new carousel
         Carousel AddCarousel(Carousel carousel, IFormFile carouselFile);

@@ -2,12 +2,13 @@
 using kennel_bambino.web.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
 {
-    public interface IPhotoService
+    public interface IPhotoService : IDisposable
     {
         #region Add new photo
         Photo AddPhoto(Photo photo, IFormFile imageFile);

@@ -1,11 +1,12 @@
 ﻿using kennel_bambino.web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
 {
-    public interface IBodyTypeService
+    public interface IBodyTypeService : IDisposable
     {
         #region Add new BodyType
         BodyType AddBodyType(BodyType bodyType);

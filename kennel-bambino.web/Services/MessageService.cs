@@ -221,5 +221,16 @@ namespace kennel_bambino.web.Services
             .Where(c => c.IsChecked == false)
             .CountAsync();
         #endregion
+
+        #region Helpers
+        public void Dispose() 
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
+        }
+        #endregion
     }
 }

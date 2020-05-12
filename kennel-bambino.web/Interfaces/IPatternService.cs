@@ -1,11 +1,12 @@
 ﻿using kennel_bambino.web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
 {
-    public interface IPatternService
+    public interface IPatternService : IDisposable
     {
         #region Add new Pattern
         Pattern AddPattern(Pattern pattern);

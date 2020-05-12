@@ -1,11 +1,12 @@
 ﻿using kennel_bambino.web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
 {
-    public interface IEyeColorService
+    public interface IEyeColorService : IDisposable
     {
         #region Add new eyeColor
         EyeColor AddEyeColor(EyeColor eyeColor);

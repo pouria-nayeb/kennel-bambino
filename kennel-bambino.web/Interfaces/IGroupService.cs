@@ -1,12 +1,13 @@
 ﻿using kennel_bambino.web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
 {
-    public interface IGroupService
+    public interface IGroupService : IDisposable
     {
         #region Add new group
         Group AddGroup(Group group, IFormFile imageFile);

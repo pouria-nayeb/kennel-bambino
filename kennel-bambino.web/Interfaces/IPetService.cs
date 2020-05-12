@@ -1,12 +1,13 @@
 ﻿using kennel_bambino.web.Models;
 using kennel_bambino.web.ViewModels;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace kennel_bambino.web.Interfaces
 {
-    public interface IPetService
+    public interface IPetService : IDisposable
     {
         #region Add new pet
         Pet AddPet(Pet pet, List<IFormFile> petPhotos);

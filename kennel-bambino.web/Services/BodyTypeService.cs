@@ -184,5 +184,17 @@ namespace kennel_bambino.web.Services
 
         public async Task<int> BodyTypesCountAsync() => await _context.BodyTypes.CountAsync();
         #endregion
+
+
+        #region Helpers
+        public void Dispose() 
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
+        }
+        #endregion
     }
 }

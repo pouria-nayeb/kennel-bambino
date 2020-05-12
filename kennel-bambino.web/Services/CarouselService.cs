@@ -188,5 +188,16 @@ namespace kennel_bambino.web.Services
         }
 
         #endregion
+
+        #region Helpers
+        public void Dispose() 
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
+        }
+        #endregion
     }
 }

@@ -250,5 +250,16 @@ namespace kennel_bambino.web.Services
             .Where(p => p.PhotoName.TextTransform().Contains(alt.TextTransform()))
             .ToListAsync();
         #endregion
+
+        #region Helpers
+        public void Dispose()
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
+        }
+        #endregion
     }
 }

@@ -180,5 +180,16 @@ namespace kennel_bambino.web.Services
 
         public async Task<int> EyeColorsCountAsync() => await _context.EyeColors.CountAsync();
         #endregion
+
+        #region Helpers
+        public void Dispose() 
+        {
+            if (_context != null)
+            {
+                _context.Dispose();
+                GC.SuppressFinalize(this);
+            }
+        }
+        #endregion
     }
 }
